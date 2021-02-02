@@ -21,8 +21,24 @@ map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file
 
 ### Configuration 
 1) Make sure to have a [smMIP-design file](https://www.). Such files can easly be generated with [MIPgen](http://shendurelab.github.io/MIPGEN) executables.
-2) Please generate a single folder and copy into it all the bam files that you want to analyse.  
+2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](http://) that can be used with this manual.  
 map_smMIPs_extract_UMIs.R was built to process one bam file at a time. A simple shell script for parallel processing is provided [here](https:/www)
+
+### Running the code
+Run map_smMIPs_extract_UMIs.R with the required input parameters:
+```
+-b, --bam.file, Path to bam file. [MANDATORY]
+-p, --panel.file, Path to smMIP design file. [MANDATORY]
+-s, --sample.name, Sample ID that will be used for the output bam [MANDATORY]
+-o, --output, Path for output files.  If not supplied, a new folder which is named based on the -s parameter will be generated within the folder that contain bam file.
+-c, --code, Path to smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (map_smMIPs_extract_UMIs.R)
+-f, --filtered.reads,  default="y", options="y" or "n". Output a sam file that contain the filtered reads. 
+-t, --threads, default=1. Specify the number of threads to use. 
+-O, --OVERLAP, default=0.95. Fine-tuning the overlap between reads and smMIPs . Used in the map.smip_to_site function
+-M, --MAPQ, default=50. MAPQ cut-off. Used in the filter.on.mappingscore function
+  ```
+
+
 
 
 
