@@ -11,7 +11,7 @@ smMIP-tools are executed from the terminal. There is no need for installation.
 This pipeline requires the following software:
 | Program | Purpose                                    |
 | ------- | ------------------------------------------ |
-| BWA (http://bio-bwa.sourceforge.net/) | Align reads |
+| BWA (http://bio-bwa.sourceforge.net) | Align reads |
 | R (https://www.r-project.org) | Run smMIP tools |
 
 | R packages                                       |
