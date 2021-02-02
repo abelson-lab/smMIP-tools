@@ -21,7 +21,7 @@ map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file
 
 ### Configuration 
 1) Make sure to have a [smMIP-design file](https://www.). Such files can easly be generated with [MIPgen](http://shendurelab.github.io/MIPGEN) executables.
-2) Please generate a single folder and copy into it all the bam files that you want to analyse.
+2) Please generate a single folder and copy into it all the bam files that you want to analyse.  
 map_smMIPs_extract_UMIs.R was built to process one bam file at a time. A simple shell script for parallel processing is provided [here](https:/www)
 
 
