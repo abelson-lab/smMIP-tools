@@ -5,7 +5,7 @@ The first is a read processing tool that performs quality control steps, generat
 The second is an error-aware variant caller capable of detecting both single nucleotide variants and short insertion and deletions.
 
 ## Quick Start
-smMIP-tools are executed from the terminal. There is no need for installation.
+smMIP-tools can be executed from the terminal. There is no need for installation.
 
 ## Dependencies
 This pipeline requires the following software and packages:
