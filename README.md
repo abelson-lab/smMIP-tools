@@ -1,4 +1,4 @@
-**smMIP-tools: a computational toolset for read processing and mutation detection from molecular-inversion-probes derived data**
+#smMIP-tools: a computational toolset for read processing and mutation detection from molecular-inversion-probes derived data#
 
 Here we present an example of how to use smMIP-tools main two features.
 
