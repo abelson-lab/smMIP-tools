@@ -12,7 +12,7 @@ This pipeline requires the following software and packages:
 | Program | Packages                                       |
 | ------------------------|------------------------- |
 | R (https://www.r-project.org) | optparse, data.table, parallel, Rsamtools, dplyr |               
-| ------------------------|------------------------ |
+
    
 
 ## Read Processing
