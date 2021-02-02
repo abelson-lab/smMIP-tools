@@ -9,13 +9,11 @@ smMIP-tools can be executed from the terminal. There is no need for installation
 
 ## Dependencies
 This pipeline requires the following software and packages:
-| Program |
-| ------------------------------------------------- |
-| R (https://www.r-project.org) | Run smMIP tools |
-
-| Packages                                       |
-| ------------------------------------------------ |
-| optparse, data.table, parallel, Rsamtools, dplyr |                  
+| Program | Packages                                       |
+| ------------------------|------------------------- |
+| R (https://www.r-project.org) | optparse, data.table, parallel, Rsamtools, dplyr |               
+| ------------------------|------------------------ |
+   
 
 ## Read Processing
 ### Description
