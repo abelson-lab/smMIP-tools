@@ -18,9 +18,11 @@ This pipeline requires the following software and packages:
 | optparse, data.table, parallel, Rsamtools, dplyr |   
 
 
+
+
 ## Read Processing
 ### Description
-map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file and a [smMIP-design file](https://www.python.org/) containing information about each probe and its targeted sequenced. It applys a set of filters on the input bam file to discard hard clipped reads, reads with low mapping quality, paired reads with an unexpected insert size or improper alignment orientations. To validate the proper structure of reads, and to identify corrupted UMI sequences read-smMIP linkages are being conducted. The final output contains a couple of quality control summary files concerning raw and consensus reads as well as a BAM file containing only high-quality reads. UMIs sequences and smMIPs-of-origin are included in each read’s header.
+map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file and a [smMIP-design file](https://www.python.org/) containing information about each probe and its targeted sequenced. It applys a set of filters on the input bam file to discard hard clipped reads, reads with low mapping quality, paired reads with an unexpected insert size or improper alignment orientations. To validate the proper structure of reads, and to identify corrupted UMI sequences read-smMIP linkages are being conducted. The final output contains a couple of quality control summary files concerning raw and consensus reads as well as a BAM file containing only high-quality reads. UMIs sequences and smMIPs-of-origin will be included in each read’s header.
 
 ### Configuration 
 Please generate a single folder and copy into it all the bam files that you want to analyse.
