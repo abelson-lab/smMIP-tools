@@ -13,7 +13,7 @@ This pipeline requires the following software and packages:
 | Program | Packages                                       |
 | ------------------------|------------------------- |
 | R (https://www.r-project.org) | optparse, data.table, parallel, Rsamtools, dplyr |               
-
+\*You will be prompt to install/update other packages when installing the above 5 packages.
    
 
 ## Read Processing
@@ -37,7 +37,174 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
 -O, --OVERLAP, default=0.95. Fine-tuning the overlap between reads and smMIPs. Used in the map.smip_to_site function
 -M, --MAPQ, default=50. MAPQ cut-off. Used in the filter.on.mappingscore function
   ```
-map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https:/www)
+\*map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https:/www)
+
+```
+Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
+
+Loading required package: GenomeInfoDb
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:Biostrings’:
+
+    collapse, intersect, setdiff, setequal, union
+
+The following object is masked from ‘package:XVector’:
+
+    slice
+
+The following objects are masked from ‘package:GenomicRanges’:
+
+    intersect, setdiff, union
+
+The following object is masked from ‘package:GenomeInfoDb’:
+
+    intersect
+
+The following objects are masked from ‘package:IRanges’:
+
+    collapse, desc, intersect, setdiff, slice, union
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    first, intersect, rename, setdiff, setequal, union
+
+The following objects are masked from ‘package:BiocGenerics’:
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:GenomicRanges’:
+
+    shift
+
+The following object is masked from ‘package:IRanges’:
+
+    shift
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    first, second
+
+###############################
+        Run Parameters
+###############################
+$bam.file
+[1] "/.mounts/example_github/Example/bams/control1.bam"
+
+$panel.file
+[1] "/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt"
+
+$sample.name
+[1] "control1"
+
+$code
+[1] "/.mounts/example_github/R"
+
+$filtered.reads
+[1] "n"
+
+$threads
+[1] 1
+
+$OVERLAP
+[1] 0.95
+
+$MAPQ
+[1] 50
+
+$help
+[1] FALSE
+
+$output
+[1] "/.mounts/example_github/Example/bams"
+
+###############################
+            Running...
+###############################
+Loading bam
+Filtering reads based on low mapping score
+Filtering reads based on bad sam flag
+Filtering reads based on mate distance
+Filtering hard clipped reads
+Filtering reads with missing mates
+Mapping smMIPs to reads. Considering overlap and distance measurements :  100%      
+Verifying mapping by local smMIP arms alignment : 100%%     
+Extracting UMIs
+Writing coverage per smMIP and filtered reads summary files
+Adding smMIPs names and UMI sequences to the reads names
+Writing UMIs per smmip summary
+Writing the clean bam file
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1/control1_clean.bam"
+
+###############################
+             DONE
+###############################
+  ```
+
+
+
+
+
 
 
 
