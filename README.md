@@ -1,8 +1,9 @@
 # smMIP-tools: a computational toolset for read processing and mutation detection from molecular-inversion-probes derived data
 
-Here we present an example of how to use smMIP-tools main two features:
+Here we present an example of how to use smMIP-tools two main features:
 The first is a read processing tool that performs quality control steps, generates read-smMIP linkages and retrieval of molecular tags.
 The second is an error-aware variant caller capable of detecting both single nucleotide variants and short insertion and deletions.
+The example data contain sequencing information obtained by a single smMIP that covers a recurrent mutation of which we will attemp to identify.
 
 ## Quick Start
 smMIP-tools can be executed from the terminal. There is no need for installation. Copy the [code](https://www.) to your folder of choice.
