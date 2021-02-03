@@ -23,7 +23,6 @@ map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file
 ### Configuration 
 1) Make sure to have a [smMIP-design file](https://www.). We used [MIPgen](http://shendurelab.github.io/MIPGEN) to design the smMIP used in this example. If you designed your smMIPs differently make sure that your file contain the following columns (case sensitve) and their relavant information: chr, ext_probe_start, ext_probe_stop, ext_probe_sequence, lig_probe_start, lig_probe_stop, lig_probe_sequence, mip_scan_start_position, mip_scan_stop_position, scan_target_sequence, mip_sequence, probe_strand, mip_name
 2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](http://) that can be used with this manual.  
-map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script for parallel processing is provided [here](https:/www)
 
 ### Running the code
 Run map_smMIPs_extract_UMIs.R with the required input parameters:
@@ -38,6 +37,7 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
 -O, --OVERLAP, default=0.95. Fine-tuning the overlap between reads and smMIPs . Used in the map.smip_to_site function
 -M, --MAPQ, default=50. MAPQ cut-off. Used in the filter.on.mappingscore function
   ```
+map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script for parallel processing is provided [here](https:/www)
 
 
 
