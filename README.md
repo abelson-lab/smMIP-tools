@@ -34,7 +34,7 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
 -c, --code, Path to smMIP tools source functions, smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (map_smMIPs_extract_UMIs.R).
 -f, --filtered.reads,  default="n", options="y" or "n". Output a sam file that contain the filtered reads. A sam file for the non-filtered reads will also be generated.  
 -t, --threads, default=1. Specify the number of threads to use for parallel processing. 
--O, --OVERLAP, default=0.95. Fine-tuning the overlap between reads and smMIPs . Used in the map.smip_to_site function
+-O, --OVERLAP, default=0.95. Fine-tuning the overlap between reads and smMIPs. Used in the map.smip_to_site function
 -M, --MAPQ, default=50. MAPQ cut-off. Used in the filter.on.mappingscore function
   ```
 map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https:/www)
