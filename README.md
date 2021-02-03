@@ -21,9 +21,9 @@ This pipeline requires the following software and packages:
 map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file and a smMIP design file containing information about each probe and its targeted sequenced. It applys a set of filters on the input bam file to discard hard clipped reads, reads with low mapping quality, paired reads with an unexpected insert size or improper alignment orientations. To validate the proper structure of reads, and to identify corrupted UMI sequences read-smMIP linkages are being conducted. The final output contains a couple of quality control summary files concerning raw and consensus reads as well as a BAM file containing only high-quality reads. UMIs sequences and smMIPs-of-origin will be included in each read’s header.
 
 ### Configuration 
-1) Make sure to have a [smMIP-design file](https://www.). Such files can easly be generated with [MIPgen](http://shendurelab.github.io/MIPGEN) executables.
+1) Make sure to have a [smMIP-design file](https://www.). We used [MIPgen](http://shendurelab.github.io/MIPGEN) to design the smMIP used in this example. If you designed your smMIPs differently make sure that your file contain the following columns (case sensitve) and their relavant information: chr, ext_probe_start, ext_probe_stop, ext_probe_sequence, lig_probe_start, lig_probe_stop, lig_probe_sequence, mip_scan_start_position, mip_scan_stop_position, scan_target_sequence, mip_sequence, probe_strand, mip_name
 2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](http://) that can be used with this manual.  
-map_smMIPs_extract_UMIs.R was built to process one bam file at a time. A simple shell script for parallel processing is provided [here](https:/www)
+map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script for parallel processing is provided [here](https:/www)
 
 ### Running the code
 Run map_smMIPs_extract_UMIs.R with the required input parameters:
