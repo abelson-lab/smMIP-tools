@@ -194,7 +194,7 @@ Writing coverage per smMIP and filtered reads summary files
 Adding smMIPs names and UMI sequences to the reads names
 Writing UMIs per smmip summary
 Writing the clean bam file
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1/control1_clean.bam"
+[1] "/.mounts/example_github/Example/bams/control1/control1_clean.bam"
 
 ###############################
              DONE
