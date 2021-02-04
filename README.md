@@ -23,7 +23,7 @@ map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file
 
 ### Configuration 
 1) Make sure to have a [smMIP-design file](https://www.). We used [MIPgen](http://shendurelab.github.io/MIPGEN) to design the smMIP used in this example. If you designed your smMIPs differently make sure that your file contain the following columns (case sensitve) and their relavant information: chr, ext_probe_start, ext_probe_stop, ext_probe_sequence, lig_probe_start, lig_probe_stop, lig_probe_sequence, mip_scan_start_position, mip_scan_stop_position, scan_target_sequence, mip_sequence, probe_strand, mip_name
-2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](http://) that can be used with this manual.  
+2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](https://github.com/BioSoft/smMIP-tools/tree/main/Example/bams) that can be used with this manual.  
 
 ### Running the code
 Run map_smMIPs_extract_UMIs.R with the required input parameters:
