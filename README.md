@@ -6,7 +6,7 @@ The second is an error-aware variant caller capable of detecting both single nuc
 The example data contain sequencing information obtained by a single smMIP that covers a recurrent mutation of which we will attemp to identify.
 
 ## Quick Start
-smMIP-tools can be executed from the terminal. There is no need for installation. Copy the [code files](https://www.) to your folder of choice.
+smMIP-tools can be executed from the terminal. There is no need for installation. Copy the [code files](https://github.com/BioSoft/smMIP-tools/tree/main/R) to your folder of choice.
 
 ## Dependencies
 This pipeline requires the following software and packages:
