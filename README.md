@@ -204,7 +204,7 @@ Writing the clean bam file
   
 ## smMIP Target Panel Annotation
 ### Description
-Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). It uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that may be detected using your target smMIP panel. 
+Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). It uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that might be detected using your target smMIP panel. 
 
 ### Configuration 
 cellbaseR makes use of a web service API. Make sure to run it on a processor that is connected to the internet.
@@ -215,7 +215,7 @@ Run Annotate_smMIP_panel.R with the required input parameters:
 ```
 -p, --panel.file. Path to smMIP design file. [MANDATORY]
 -c, --code, Path to smMIP tools source functions, smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (Annotate_smMIP_panel.R).
--o", --output. Path for the output annotated panel. If not supplied, the output will be saved within the folder that contain the smMIP design file.
+-o, --output. Path for the output annotated panel. If not supplied, the output will be saved within the folder that contain the smMIP design file.
 -t, --threads, default=1. Specify the number of threads to use for parallel processing. 
 -g, --genome, default="GRCh37". Specify the genome assembly to be queried. For all the possible options please refer to the cellbaseR package documentation. 
 -s, --species, default="hsapiens". Specify the species to be queried. For all the possible options please refer to the cellbaseR package documentation.
