@@ -204,7 +204,7 @@ Writing the clean bam file
   
 ## smMIP Target Panel Annotation
 ### Description
-Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). It uses the  "cellbaseR" package to summarize gene ID, amino acid chance, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that may be detected using your target smMIP panel. 
+Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). It uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that may be detected using your target smMIP panel. 
 
 ### Configuration 
 cellbaseR makes use of a web service API. Make sure to run it on a processor that is connected to the internet.
