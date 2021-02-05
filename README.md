@@ -201,10 +201,105 @@ Writing the clean bam file
              DONE
 ###############################
   ```
+  
+## smMIP Target Panel Annotation
+### Description
+Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt) . It uses the  "cellbaseR" package to summarize gene ID, amino acid chance, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that may be detected using your target smMIP panel. 
+
+### Configuration 
+cellbaseR makes use of a web service API. Make sure to run it on a processor that is connected to the internet.
+
+### Running the code
+Run Annotate_smMIP_panel.R with the required input parameters:
+
+```
+-p, --panel.file. Path to smMIP design file. [MANDATORY]
+-c, --code, Path to smMIP tools source functions, smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (Annotate_smMIP_panel.R).
+-o", --output. Path for the output annotated panel. If not supplied, the output will be saved within the folder that contain the smMIP design file.
+-t, --threads, default=1. Specify the number of threads to use for parallel processing. 
+-g, --genome, default="GRCh37". Specify the genome assembly to be queried. For all the possible options please refer to the cellbaseR package documentation. 
+-s, --species, default="hsapiens". Specify the species to be queried. For all the possible options please refer to the cellbaseR package documentation.
+ 
+
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:data.table’:
+
+    first, second
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
 
 
+Attaching package: ‘IRanges’
 
+The following object is masked from ‘package:data.table’:
 
+    shift
+
+###############################
+        Run Parameters
+###############################
+$panel.file
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files/Target_MIPgen.txt"
+
+$code
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/R"
+
+$threads
+[1] 1
+
+$genome
+[1] "GRCh37"
+
+$species
+[1] "hsapiens"
+
+$help
+[1] FALSE
+
+$output
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files"
+
+###############################
+            Running...
+###############################
+[1] Annotating all the possible SNVs in the target space. Please wait...
+Downloading SNV annotations :  100%     
+Writing the annotated table to disk
+
+###############################
+             DONE
+###############################
+```
 
 
 
