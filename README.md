@@ -14,7 +14,7 @@ This pipeline requires the following software and packages:
 | ------------------------|------------------------- |
 | R (https://www.r-project.org) | optparse, data.table, parallel, Rsamtools, dplyr, IRanges, cellbaseR |               
 
-*You will be prompt to install/update other packages when installing the above 5 packages.
+*You will be prompt to install/update other packages when installing the above packages.
    
 
 ## Read Processing
