@@ -269,10 +269,10 @@ The following object is masked from ‘package:data.table’:
         Run Parameters
 ###############################
 $panel.file
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files/Target_MIPgen.txt"
+[1] "/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt"
 
 $code
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/R"
+[1] "/.mounts/example_github/R"
 
 $threads
 [1] 1
@@ -287,7 +287,7 @@ $help
 [1] FALSE
 
 $output
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files"
+[1] "/.mounts/example_github/Example/supplemental_files"
 
 ###############################
             Running...
