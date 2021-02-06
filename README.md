@@ -219,8 +219,11 @@ Run Annotate_smMIP_panel.R with the required input parameters:
 -t, --threads, default=1. Specify the number of threads to use for parallel processing. 
 -g, --genome, default="GRCh37". Specify the genome assembly to be queried. For all the possible options please refer to the cellbaseR package documentation. 
 -s, --species, default="hsapiens". Specify the species to be queried. For all the possible options please refer to the cellbaseR package documentation.
+ ```
+   
+ Rscript Annotate_smMIP_panel.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
  
-
+```
 Loading required package: BiocGenerics
 Loading required package: parallel
 
@@ -301,7 +304,20 @@ Writing the annotated table to disk
 ###############################
 ```
 
+head /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
 
+```
+smMIP	chr	pos	ref	alt	gene	protein	cosmic	maf	variant_type	annotated	cadd_scaled
+JAK2_001	chr9	5073732	T	A	JAK2	ENST00000539801:L604H; ENST00000381652:L604H; ENST00000544510:L455H	NA	NA	missense_variant	1	31
+JAK2_001	chr9	5073733	T	A	JAK2	ENST00000539801:L604L; ENST00000381652:L604L; ENST00000544510:L455L	NA	NA	synonymous_variant	1	9.98999977111816
+JAK2_001	chr9	5073734	T	A	JAK2	ENST00000539801:S605T; ENST00000381652:S605T; ENST00000544510:S456T	NA	NA	missense_variant	1	23.7999992370605
+JAK2_001	chr9	5073735	C	A	JAK2	ENST00000539801:S605Y; ENST00000381652:S605Y; ENST00000544510:S456Y	NA	NA	missense_variant	1	33
+JAK2_001	chr9	5073736	T	A	JAK2	ENST00000539801:S605S; ENST00000381652:S605S; ENST00000544510:S456S	NA	NA	synonymous_variant	1	8.86999988555908
+JAK2_001	chr9	5073737	C	A	JAK2	ENST00000539801:H606N; ENST00000381652:H606N; ENST00000544510:H457N	NA	NA	missense_variant	1	27.2999992370605
+JAK2_001	chr9	5073739	C	A	JAK2	ENST00000539801:H606Q; ENST00000381652:H606Q; ENST00000544510:H457Q	COSM29116,haematopoietic and lymphoid tissue	0.000144591296666667	missense_variant	1	26.8999996185303
+JAK2_001	chr9	5073742	G	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENST00000544510:K458K	NA	NA	synonymous_variant	1	13.039999961853
+JAK2_001	chr9	5073743	C	A	JAK2	ENST00000539801:H608N; ENST00000381652:H608N; ENST00000544510:H459N	NA	NA	missense_variant	1	29.8999996185303
+  ```
 
 
 
