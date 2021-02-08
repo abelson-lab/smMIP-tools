@@ -43,9 +43,9 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
   ```
 \*map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/map_smMIPs_extract_UMIs_MULTIPLE_BAMS.sh)
 
-Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
-
 ```
+Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
+  
 Loading required package: GenomeInfoDb
 Loading required package: BiocGenerics
 Loading required package: parallel
@@ -233,9 +233,9 @@ Run smMIP_level_raw_and_consensus_pileups.R with the required input parameters:
 
 \*smMIP_level_raw_and_consensus_pileups.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/smMIP_level_raw_and_consensus_pileups_MULTIPLE_BAMS.sh)
 
-Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
-
 ```
+Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+  
 Loading required package: GenomeInfoDb
 Loading required package: BiocGenerics
 Loading required package: parallel
@@ -356,8 +356,11 @@ Writing SSCS pileup file
 ###############################
   ```
 
-head /.mounts/example_github/Example/bams/control1/control1_raw_pileup.txt
+The output:
+
 ```
+head /.mounts/example_github/Example/bams/control1/control1_raw_pileup.txt
+  
 chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP
 chr9	5073732	+	A	9	7001	0.00128553063848022	JAK2_001
 chr9	5073732	+	G	2	7001	0.000285673475217826	JAK2_001
@@ -369,8 +372,9 @@ chr9	5073734	+	C	1	7001	0.000142836737608913	JAK2_001
 chr9	5073735	+	A	4	7001	0.000571346950435652	JAK2_001
 chr9	5073735	-	A	20	6936	0.00288350634371396	JAK2_001
   ```
-head /.mounts/example_github/Example/bams/control1/control1_sscs_pileup.txt
 ```
+head /.mounts/example_github/Example/bams/control1/control1_sscs_pileup.txt
+  
 chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP	UMI	family_sizes	VAF_in_families
 chr9	5073844	+	G	1	318	0.00314465408805031	JAK2_001	TTAA_AATC	1	1
 chr9	5073844	-	G	1	320	0.003125	JAK2_001	TTAA_AATC	1	1
@@ -484,11 +488,13 @@ Writing the annotated table to disk
 ###############################
              DONE
 ###############################
-```
+  ```
+  
+The output:
 
+```
 head /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt
-
-```
+  
 smMIP	chr	pos	ref	alt	gene	protein	cosmic	maf	variant_type	cadd_scaled
 JAK2_001	chr9	5073732	T	A	JAK2	ENST00000539801:L604H; ENST00000381652:L604H; ENST00000544510:L455H	NA	NA	missense_variant	31
 JAK2_001	chr9	5073733	T	A	JAK2	ENST00000539801:L604L; ENST00000381652:L604L; ENST00000544510:L455L	NA	NA	synonymous_variant	9.98999977111816
