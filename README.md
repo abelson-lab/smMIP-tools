@@ -204,24 +204,25 @@ Writing the clean bam file
   
 ## smMIP Target Panel Annotation
 ### Description
-Annotate_smMIP_panel.R takes as an input a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). It uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant (synonymous, missense, etc..) and deleteriousness (CADD score) annotations for all the possible SNVs that might be detected using your target smMIP panel. 
+Annotate_SNVs.R can take two types of files as an input: 1) A [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt) or 2) a tab delimited file with the columns "chr", "pos", "ref", "alt" . The code uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant type (synonymous, missense, etc..) and deleteriousness (CADD score) annotations. If the input is a smMIP-design file, all the possible SNVs that might be detected using each smMIP in your target smMIP panel will be annotated. 
 
 ### Configuration 
-cellbaseR makes use of a web service API. Make sure to run it on a processor(s) that is connected to the internet.
+cellbaseR makes use of a web service API. Make sure to run it on a processor(s) that is connected to the internet. If the connection was interupted the code will continue to run until it reaches the last variant. A coloumn named "annotated" will be generated to mark variant that were successfully annotated and those that were not. If this column exists in your output you can try to run Annotate_SNVs.R once more using this output and the -i parameter. If the "annotated" column does not exits it means that all the variants were succsufully annotated.
 
 ### Running the code
-Run Annotate_smMIP_panel.R with the required input parameters:
+Run Annotate_SNVs.R with the required input parameters:
 
 ```
--p, --panel.file. Path to smMIP design file. [MANDATORY]
--c, --code, Path to smMIP tools source functions, smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (Annotate_smMIP_panel.R).
--o, --output. Path for the output annotated panel. If not supplied, the output will be saved within the folder that contain the smMIP design file.
+-p, --panel.file. "Path to smMIP design file [MENDATORY if -i was not supplied]
+-i, --input. Path to a tab delimited table with the following columns: chr, pos, ref, alt. [MENDATORY if -p was not supplied]", metavar="character"),
+-o, --output. Path for the output annotated panel. If not supplied, the output will be saved within the folder that contain the smMIP design file/input file.
+-c, --code. Path to smMIP tools source functions, smMIPs_Function.R file. If not supplied, it assume the code share the same folder as this code folder with this code (Annotate_SNVs.R)
 -t, --threads, default=1. Specify the number of threads to use for parallel processing. 
 -g, --genome, default="GRCh37". Specify the genome assembly to be queried. For all the possible options please refer to the cellbaseR package documentation. 
 -s, --species, default="hsapiens". Specify the species to be queried. For all the possible options please refer to the cellbaseR package documentation.
  ```
    
- Rscript Annotate_smMIP_panel.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+ Rscript Annotate_SNVs.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
  
 ```
 Loading required package: BiocGenerics
@@ -295,7 +296,7 @@ $output
 ###############################
             Running...
 ###############################
-[1] Annotating all the possible SNVs in the target space. Please wait...
+[1] Annotating. Please wait...
 Downloading SNV annotations :  100%     
 Writing the annotated table to disk
 
@@ -304,19 +305,19 @@ Writing the annotated table to disk
 ###############################
 ```
 
-head /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+head /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt
 
 ```
-smMIP	chr	pos	ref	alt	gene	protein	cosmic	maf	variant_type	annotated	cadd_scaled
-JAK2_001	chr9	5073732	T	A	JAK2	ENST00000539801:L604H; ENST00000381652:L604H; ENST00000544510:L455H	NA	NA	missense_variant	1	31
-JAK2_001	chr9	5073733	T	A	JAK2	ENST00000539801:L604L; ENST00000381652:L604L; ENST00000544510:L455L	NA	NA	synonymous_variant	1	9.98999977111816
-JAK2_001	chr9	5073734	T	A	JAK2	ENST00000539801:S605T; ENST00000381652:S605T; ENST00000544510:S456T	NA	NA	missense_variant	1	23.7999992370605
-JAK2_001	chr9	5073735	C	A	JAK2	ENST00000539801:S605Y; ENST00000381652:S605Y; ENST00000544510:S456Y	NA	NA	missense_variant	1	33
-JAK2_001	chr9	5073736	T	A	JAK2	ENST00000539801:S605S; ENST00000381652:S605S; ENST00000544510:S456S	NA	NA	synonymous_variant	1	8.86999988555908
-JAK2_001	chr9	5073737	C	A	JAK2	ENST00000539801:H606N; ENST00000381652:H606N; ENST00000544510:H457N	NA	NA	missense_variant	1	27.2999992370605
-JAK2_001	chr9	5073739	C	A	JAK2	ENST00000539801:H606Q; ENST00000381652:H606Q; ENST00000544510:H457Q	COSM29116,haematopoietic and lymphoid tissue	0.000144591296666667	missense_variant	1	26.8999996185303
-JAK2_001	chr9	5073742	G	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENST00000544510:K458K	NA	NA	synonymous_variant	1	13.039999961853
-JAK2_001	chr9	5073743	C	A	JAK2	ENST00000539801:H608N; ENST00000381652:H608N; ENST00000544510:H459N	NA	NA	missense_variant	1	29.8999996185303
+smMIP	chr	pos	ref	alt	gene	protein	cosmic	maf	variant_type	cadd_scaled
+JAK2_001	chr9	5073732	T	A	JAK2	ENST00000539801:L604H; ENST00000381652:L604H; ENST00000544510:L455H	NA	NA	missense_variant	31
+JAK2_001	chr9	5073733	T	A	JAK2	ENST00000539801:L604L; ENST00000381652:L604L; ENST00000544510:L455L	NA	NA	synonymous_variant	9.98999977111816
+JAK2_001	chr9	5073734	T	A	JAK2	ENST00000539801:S605T; ENST00000381652:S605T; ENST00000544510:S456T	NA	NA	missense_variant	23.7999992370605
+JAK2_001	chr9	5073735	C	A	JAK2	ENST00000539801:S605Y; ENST00000381652:S605Y; ENST00000544510:S456Y	NA	NA	missense_variant	33
+JAK2_001	chr9	5073736	T	A	JAK2	ENST00000539801:S605S; ENST00000381652:S605S; ENST00000544510:S456S	NA	NA	synonymous_variant	8.86999988555908
+JAK2_001	chr9	5073737	C	A	JAK2	ENST00000539801:H606N; ENST00000381652:H606N; ENST00000544510:H457N	NA	NA	missense_variant	27.2999992370605
+JAK2_001	chr9	5073738	A	A	JAK2	ENST00000539801:H606H; ENST00000381652:H606H; ENST00000544510:H457H	NA	NA	synonymous_variant	0
+JAK2_001	chr9	5073739	C	A	JAK2	ENST00000539801:H606Q; ENST00000381652:H606Q; ENST00000544510:H457Q	COSM29116,haematopoietic and lymphoid tissue	0.000144591296666667	missense_variant	26.8999996185303
+JAK2_001	chr9	5073740	A	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENST00000544510:K458K	NA	NA	synonymous_variant	0
   ```
 
 
