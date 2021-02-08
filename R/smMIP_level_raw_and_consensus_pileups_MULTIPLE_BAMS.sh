@@ -11,10 +11,10 @@
 ###########################################################################################################################
 
 #Enter the path to the directory containing the bam files
-BAM=/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/  #CHANGE HERE (this is the folder that supposed to contain all the initial bam files)
+BAM=/.mounts/example_github/Example/bams/  #CHANGE HERE (this is the folder that supposed to contain all the initial bam files)
 
 #Enter the path to the smMIP-design file
-TARGET=/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files/Target_MIPgen.txt  #CHANGE HERE
+TARGET=/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt  #CHANGE HERE
 
 
 for file in $( ls $BAM/*/*clean.bam ); do
@@ -26,6 +26,6 @@ for file in $( ls $BAM/*/*clean.bam ); do
         echo -e "Rscript smMIP_level_raw_and_consensus_pileups.R -b $file -p $TARGET" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
 
         ### RUNNING THE SCRIPT
-        qsub -P abelsonlab -l h_vmem=16g automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
+        qsub -l h_vmem=16g automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
 
 done
