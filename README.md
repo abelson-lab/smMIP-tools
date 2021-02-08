@@ -406,10 +406,10 @@ Run Annotate_SNVs.R with the required input parameters:
 -g, --genome, default="GRCh37". Specify the genome assembly to be queried. For all the possible options please refer to the cellbaseR package documentation. 
 -s, --species, default="hsapiens". Specify the species to be queried. For all the possible options please refer to the cellbaseR package documentation.
  ```
-   
- Rscript Annotate_SNVs.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
- 
+    
 ```
+Rscript Annotate_SNVs.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+  
 Loading required package: BiocGenerics
 Loading required package: parallel
 
