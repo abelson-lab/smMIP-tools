@@ -300,13 +300,13 @@ The following objects are masked from ‘package:S4Vectors’:
         Run Parameters
 ###############################
 $bam.file
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1/control1_clean.bam"
+[1] "/.mounts/example_github/Example/bams/control1/control1_clean.bam"
 
 $panel.file
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files/Target_MIPgen.txt"
+[1] "/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt"
 
 $code
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/R"
+[1] "/.mounts/example_github/R"
 
 $mnd
 [1] 1
@@ -336,7 +336,7 @@ $help
 [1] FALSE
 
 $output
-[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1"
+[1] "/.mounts/example_github/Example/bams/control1"
 
 $sample.name
 [1] "control1"
@@ -345,10 +345,10 @@ $sample.name
             Running...
 ###############################
 Loading bam
-Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1
+Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/bams/control1
 Creating smMIP based pileups :  100%         
 Writing raw pileup file to disk
-Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1
+Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/bams/control1
 Creating smMIP-UMI consensus pileups :  100%     
 Writing SSCS pileup file
 ###############################
@@ -356,6 +356,32 @@ Writing SSCS pileup file
 ###############################
   ```
 
+head /.mounts/example_github/Example/bams/control1/control1_raw_pileup.txt
+```
+chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP
+chr9	5073732	+	A	9	7001	0.00128553063848022	JAK2_001
+chr9	5073732	+	G	2	7001	0.000285673475217826	JAK2_001
+chr9	5073733	+	A	10	7001	0.00142836737608913	JAK2_001
+chr9	5073733	+	C	1	7001	0.000142836737608913	JAK2_001
+chr9	5073733	+	G	3	7001	0.000428510212826739	JAK2_001
+chr9	5073734	+	A	12	7001	0.00171404085130696	JAK2_001
+chr9	5073734	+	C	1	7001	0.000142836737608913	JAK2_001
+chr9	5073735	+	A	4	7001	0.000571346950435652	JAK2_001
+chr9	5073735	-	A	20	6936	0.00288350634371396	JAK2_001
+  ```
+head /.mounts/example_github/Example/bams/control1/control1_sscs_pileup.txt
+```
+chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP	UMI	family_sizes	VAF_in_families
+chr9	5073844	+	G	1	318	0.00314465408805031	JAK2_001	TTAA_AATC	1	1
+chr9	5073844	-	G	1	320	0.003125	JAK2_001	TTAA_AATC	1	1
+chr9	5073775	+	G	1	320	0.003125	JAK2_001	TCAT_AAGT	1	1
+chr9	5073789	+	C	1	320	0.003125	JAK2_001	TCAT_AAGT	1	1
+chr9	5073845	+	T	10	316	0.0316455696202532	JAK2_001	TTGT_CCTC,CAAT_ATTC,TTAT_AACA,AATT_TTAT,TTAT_TAAT,TATC_TTAT,TTTT_TCAA,AATG_TGTT,TTTT_TACT,CTAT_ACAT	1,1,1,1,1,1,1,1,1,1	1,1,1,1,1,1,1,1,1,1
+chr9	5073741	-	C	1	317	0.00315457413249211	JAK2_001	TTTA_GTAC	1	1
+chr9	5073753	-	A	2	320	0.00625	JAK2_001	TTTA_GTAC,TCAA_ATTT	1,1	1,1
+chr9	5073759	-	C	2	319	0.00626959247648903	JAK2_001	TTTA_GTAC,TCAA_TATT	1,1	1,1
+chr9	5073828	+	G	2	318	0.00628930817610063	JAK2_001	TTTA_GTAC,GTTT_AATA	1,1	1,1
+  ```
 
 ## smMIP Target Panel Annotation
 ### Description
