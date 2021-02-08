@@ -43,9 +43,9 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
   ```
 \*map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/map_smMIPs_extract_UMIs_MULTIPLE_BAMS.sh)
 
-```
 Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
 
+```
 Loading required package: GenomeInfoDb
 Loading required package: BiocGenerics
 Loading required package: parallel
@@ -229,6 +229,131 @@ Run smMIP_level_raw_and_consensus_pileups.R with the required input parameters:
 -f, --family.size, default=0. The minimum read-family size to consider in single strand consensus pileups
 -v, --consensus.cutoff", default=0.7. The percentage of reads that must have the same base to form a consensus
 -t, --threads, default=1. Specify the number of threads to use"
+  ```
+
+\*smMIP_level_raw_and_consensus_pileups.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/smMIP_level_raw_and_consensus_pileups_MULTIPLE_BAMS.sh)
+
+Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+
+```
+Loading required package: GenomeInfoDb
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘data.table’
+
+The following object is masked from ‘package:GenomicRanges’:
+
+    shift
+
+The following object is masked from ‘package:IRanges’:
+
+    shift
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    first, second
+
+###############################
+        Run Parameters
+###############################
+$bam.file
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1/control1_clean.bam"
+
+$panel.file
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/supplemental_files/Target_MIPgen.txt"
+
+$code
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/R"
+
+$mnd
+[1] 1
+
+$mmq
+[1] 50
+
+$mbq
+[1] 10
+
+$rank
+[1] "F"
+
+$umi
+[1] "T"
+
+$family.size
+[1] 0
+
+$consensus.cutoff
+[1] 0.7
+
+$threads
+[1] 1
+
+$help
+[1] FALSE
+
+$output
+[1] "/.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1"
+
+$sample.name
+[1] "control1"
+
+###############################
+            Running...
+###############################
+Loading bam
+Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1
+Creating smMIP based pileups :  100%         
+Writing raw pileup file to disk
+Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/bams/control1
+Creating smMIP-UMI consensus pileups :  100%     
+Writing SSCS pileup file
+###############################
+             DONE
+###############################
   ```
 
 
