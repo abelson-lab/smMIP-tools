@@ -1,7 +1,7 @@
 # smMIP-tools: a computational toolset for processing and analysis of single molecule molecular-inversion-probes derived data
 
 Here we present an example of how to use smMIP-tools to process and analyze sequencing data obtained from targeted smMIP panels. 
-The descibed pipeline covers the following topics:
+The pipeline covers the following topics:
 1) Read processing and quality control steps, construction of read-smMIP linkages and retrieval of molecular tags.
 2) smMIP-level base calls summary.
 3) smMIP panel annotation
