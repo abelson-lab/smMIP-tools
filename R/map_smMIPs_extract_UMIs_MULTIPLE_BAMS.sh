@@ -21,7 +21,7 @@ for file in $( ls $BAM | grep bam); do
 	### GENERATING THE SCRIPT 
 	SAMPLE="$(echo $file | sed 's/.bam.*//')" #Please note the sample name and the file name assumed to be the same (everything after .bam will be removed). 
 	echo -e "#!/bin/bash -l\n#$ -S /bin/bash\n#$ -cwd\n\n" > automatic_script_for_map_smMIPs_extract_UMIs_$SAMPLE.sh
-	echo -e "module load rstats/3.6\n" >> automatic_script_for_map_smMIPs_extract_UMIs_$SAMPLE.sh #Loading R. Delete this line if R is rooted. Change the module name to your R module if it isnt.
+	echo -e "module load rstats/3.6\n" >> automatic_script_for_map_smMIPs_extract_UMIs_$SAMPLE.sh #Loading R. Delete this line if R is rooted. CHANGE the module name to your R module if it isnt.
 	echo -e "Rscript map_smMIPs_extract_UMIs.R -b $BAM/$file -p $TARGET -s $SAMPLE" >> automatic_script_for_map_smMIPs_extract_UMIs_$SAMPLE.sh 
 	
 	### RUNNING THE SCRIPT
