@@ -34,15 +34,17 @@ if (is.null(opt$code)){ #load source functions
   source(paste0(opt$code,"/smMIPs_Functions.R"))
 }
 
-if (is.null(opt$output)){
+if (is.null(opt$output)){ 
   opt$output=dirname(opt$bam.file)
-}
+} else if (!dir.exists(opt$output)){
+      dir.create(opt$output)
+  }
 
-if (is.null(opt$sample.name)){
+if (is.null(opt$sample.name)){ 
   opt$sample.name=basename(dirname(opt$bam.file))
 }
 
-if (opt$consensus.cutoff<0.51){
+if (opt$consensus.cutoff<0.51){ 
   print(paste0("The consensus cutoff must be at the range of 0.51-1, yet you entered ",opt$consensus.cutoff,". It is now set by default to 0.7"),quote = F)
   opt$consensus.cutoff=0.7
 }
@@ -65,15 +67,15 @@ cat("###############################\n")
 ################ CREATE A DATA OBJECT
 data<-list()
 cat("Loading bam\n")
-data$samtable<-as.data.table(as.data.frame(load.bam(opt$bam.file)))
+data$samtable<-as.data.table(as.data.frame(load.bam(opt$bam.file))) 
 data$panel<-load.panel(opt$panel.file)
 data$samtable$smmip=gsub(".*[||]","",data$samtable$qname)
 data$samtable$umi=gsub(".*:","",data$samtable$smmip)
 data$samtable$smmip=gsub(":.*","",data$samtable$smmip)
 
-################ DEFINE THE PILEUP PARAMETERS
-p_param <- PileupParam(max_depth=10000000,
-                       min_nucleotide_depth=opt$mnd,
+################ DEFINE THE PILEUP PARAMETERS 
+p_param <- PileupParam(max_depth=10000000, 
+                       min_nucleotide_depth=opt$mnd, 
                        distinguish_strand=T,
                        min_mapq=opt$mmq,
                        min_base_quality=opt$mbq, #Default is 10 since high values may bias variant allele frequencies.
@@ -100,7 +102,7 @@ tmp1=data.table("smMIP"=rep(data$panel$id,unlist(lapply(strsplit(data$panel$targ
                 "pos"=unlist(apply(cbind(data$panel$target_start,data$panel$target_stop),1,function(x) seq(x[1],x[2],1))), #we are not interested to call mutations from the smMIPs arms
                 "ref"=unlist(strsplit(data$panel$target_seq, "")))
 
-################ SMMIP-LEVEL RAW PILEUP
+################ SMMIP-LEVEL RAW PILEUP 
 cat(paste("Creating smMIP-level raw pileups. Please notice, temporary files will be written in",opt$output))
 cat("\n")
 
@@ -125,7 +127,7 @@ cat("Writing raw pileup file to disk\n")
 write.table(pile_raw,file=paste0(opt$output,"/",opt$sample.name,"_raw_pileup.txt"),col.names = T,row.names = F,quote = F,sep = '\t')
 
 
-################ SMMIP-LEVEL AND UMI-LEVEL PILEUP
+################ SMMIP-LEVEL AND UMI-LEVEL PILEUP 
 if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$length.left.umi)) &
      (length(unique(data$panel$length.right.umi))==1 & 0 %in% unique(data$panel$length.right.umi)))){
   cat(paste("Creating smMIP and UMI level pileups. Please notice, temporary files will be written in",opt$output))
@@ -136,17 +138,17 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
   pile_sscs=mclapply(1:length(smmip_umi_piles), mc.cores = opt$threads, mc.cleanup=T,
                      mc.silent=F, function(i) {
                        pile=pileup_foreach_smmip.umi(i)
-
+                       
                        if(round(1/length(smmip_umi_piles),2) %in% seq(0.01,0.99,0.01)) {
                          system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  ",round(100*i/length(smmip_umi_piles)),"%%     '"))
                        } else if (i==length(smmip_umi_piles)){
                          system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  100%%     '"))
                        }
                        pile
-                     })
+                    })
   system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  100%%     '"))
   cat("\n")
-
+  
   pile_sscs=rbindlist(pile_sscs)
   pile_sscs[,c("a","b") := list(coverage_at_position,VAF)]
   pile_sscs[,coverage_at_position := sum(count),by=list(seqnames,pos,strand,smMIP)] #total SSCS coverage
