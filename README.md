@@ -8,7 +8,8 @@ The pipeline covers the following topics:
 4) Mutation calling using a error-aware variant caller capable of detecting both single nucleotide variants and short insertion and deletions.
 
 ## Quick Start
-The supplied example data contain sequencing information obtained by a single smMIP that covers a recurrent mutation of which we will attemp to identify.
+The supplied example data contain sequencing information in the form of aligned bam files. The data derived from a single smMIP that covers a recurrent mutation of which we will attemp to identify.
+  
 smMIP-tools code can be executed from the terminal. There is no need for installation. Copy the [code files](https://github.com/BioSoft/smMIP-tools/tree/main/R) to your folder of choice.
 
 ## Dependencies
@@ -22,10 +23,10 @@ This pipeline requires the following software and packages:
 
 ## Read Processing
 ### Description
-map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file and a smMIP design file containing information about each probe and its targeted sequenced. It applys a set of filters on the input bam file to discard hard clipped reads, reads with low mapping quality, paired reads with an unexpected insert size or improper alignment orientations. To validate the proper structure of reads, and to identify corrupted UMI sequences read-smMIP linkages are being conducted. The final output contains a couple of quality control summary files concerning raw and consensus reads as well as a BAM file containing only high-quality reads. UMIs sequences and smMIPs-of-origin will be included in each read’s header.
+map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file and a smMIP design file containing information about each probe and its targeted genomic loci. It applys a set of filters on the input bam file to discard hard clipped reads, reads with low mapping quality, paired reads with an unexpected insert size or improper alignment orientations. To validate the proper structure of reads, and to identify corrupted Unique Molecular Identifier (UMI) sequences read-smMIP linkages are being conducted. The final output contains a couple of quality control summary files concerning raw and consensus reads as well as a BAM file containing only high-quality reads. UMIs sequences and smMIPs-of-origin will be included in each read’s header. If you are not familiar with the concept of consensus base calls you may read our Nucleic Acid Research paper ([PMID: 31127310](https://academic.oup.com/nar/article/47/15/e87/5498633)).
 
 ### Configuration 
-1) Make sure to have a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). We used [MIPgen](http://shendurelab.github.io/MIPGEN) to design the smMIP used in this example. If you designed your smMIPs differently make sure that your file contain the following columns (case sensitve) and their relavant information: chr, ext_probe_start, ext_probe_stop, ext_probe_sequence, lig_probe_start, lig_probe_stop, lig_probe_sequence, mip_scan_start_position, mip_scan_stop_position, scan_target_sequence, mip_sequence ('N' represent UMIs), probe_strand, mip_name
+1) Make sure to have a [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt). We used [MIPgen](http://shendurelab.github.io/MIPGEN) to design the smMIP used in this example. If you designed your smMIPs differently, make sure that your file contain the following columns (case sensitve) and their relavant information: chr, ext_probe_start, ext_probe_stop, ext_probe_sequence, lig_probe_start, lig_probe_stop, lig_probe_sequence, mip_scan_start_position, mip_scan_stop_position, scan_target_sequence, mip_sequence ('N' represent UMIs), probe_strand, mip_name
 2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](https://github.com/BioSoft/smMIP-tools/tree/main/Example/bams) that can be used with this manual.  
 
 ### Running the code
@@ -204,10 +205,27 @@ Writing the clean bam file
              DONE
 ###############################
   ```
+The output:
+
+```
+samtools view /.mounts/example_github/Example/bams/control1/control1_clean.bam | head
+  ```
+```
+A00827:148:HJ7MJDRXX:1:2102:14570:4586||JAK2_001:TATA_ACGC	163	chr9	5073708	60	151M	=	5073735	178	ACGCNGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFFF#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+A00827:148:HJ7MJDRXX:1:2103:25201:25504||JAK2_001:GTTT_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGANGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFFF#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFF,FFF:FF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFF:FFFF:FF,FFF:FFFFF,FFFFFFF,FFFF:FFFF,FF:,FF:F,,::F::FFF:,
+A00827:148:HJ7MJDRXX:1:2104:5674:18082||JAK2_001:GTTT_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGAAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FF,FFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFF:FF:FFFFFFFFFFFFFFFFFFFFFFFFFF
+A00827:148:HJ7MJDRXX:1:2108:2094:10441||JAK2_001:GTTC_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGAAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:F:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFF:FFFF:,F:FFFF:F:,FFFFFFFFFF
+A00827:148:HJ7MJDRXX:1:2109:5150:35430||JAK2_001:TTTA_AAGG	163	chr9	5073708	60	151M	=	5073735	175	AAGGAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFF:FFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFF:FFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFF,FFFF:FFF:FFFFFFFFFFFF:FFFFFFF
+A00827:148:HJ7MJDRXX:1:2111:18258:27696||JAK2_001:GTTT_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGAAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTGTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTACAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	:FFFFFFFF,FFFFFFFFFFFFFFFFF:FFFFFFFFF,:FFF,,:FFFFFFFFFFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFF,FFFFFFF,FF::FFFFFFFFFFFFFFF:F:FF,F:F:FF,FFFF:FF:FFFF,
+A00827:148:HJ7MJDRXX:1:2114:6506:19680||JAK2_001:GTTC_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGAAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FF::FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFF:FFFFFFF:FFFFFFFFFFFFFF:FF,FFFFFFFF:FFFFFFFFFFF,FF:FFFFFFF,FFFFFF:FFFFFF
+A00827:148:HJ7MJDRXX:1:2127:14705:11240||JAK2_001:TATA_ACGC	163	chr9	5073708	60	151M	=	5073735	178	ACGCAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+A00827:148:HJ7MJDRXX:1:2128:9588:3192||JAK2_001:GTTT_AAGA	163	chr9	5073708	60	151M	=	5073735	174	AAGAAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFF:FFFFFFFFFFFFF:FFFFFFFFFFFFFF:FFFFF:FFF,FFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFF:FFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFF:F,FFF::F,FFFFF,:FFFFF,FFFFF
+A00827:148:HJ7MJDRXX:1:2129:8250:25520||JAK2_001:TTTA_AAGG	163	chr9	5073708	60	151M	=	5073735	175	AAGGAGCAAGTATGATGAGCAAGCTTTCTCACAAGCATTTGGTTTTAAATTATGGAGTATGTGTCTGTGGAGACGAGAGTAAGTAAAACTACAGGCTTTCTAATGCCTTTCTCAGAGCATCTGTTTTTGTTTATATAGAAAATTCAGTTTC	FFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFF,:FFFF:FFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFF:FFFFFFFFFF
+  ```
 
 ## smMIP Level Base Calls Summary
 ### Description
-smMIP_level_raw_and_consensus_pileups.R takes as an input a clean bam file generated by map_smMIPs_extract_UMIs.R and a smMIP design file to generate a smMIP-level base calls summaries. smMIP-level base calls summaries provides an additional way to identify errors and differentiate them from real mutations. If your smMIPs include unique molecular identifers, consensus base calls summaries will also be generated. If you are not familiar with the concept of consensus base calls you may read our Nucleic Acid Research paper ([PMID: 31127310](https://academic.oup.com/nar/article/47/15/e87/5498633)).
+smMIP_level_raw_and_consensus_pileups.R takes as an input a clean bam file generated by map_smMIPs_extract_UMIs.R and a smMIP design file to generate a smMIP-level base calls summaries. smMIP-level base calls summaries provides an additional way to identify errors and differentiate them from real mutations. If your smMIPs include unique molecular identifers, consensus base calls summaries will also be generated. 
 
 ### Configuration 
 Make sure to have a proper smMIP design file. It is being used to infer automatically the length of UMIs, remove reference alleles' summaries to reduce file size and to focus the query only on the targeted loci of each smMIP. The porpose of the latter is to withhold analyis of genomic loci associated with smMIP's arms hybridization. 
@@ -235,7 +253,8 @@ Run smMIP_level_raw_and_consensus_pileups.R with the required input parameters:
 
 ```
 Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
-  
+  ```
+```  
 Loading required package: GenomeInfoDb
 Loading required package: BiocGenerics
 Loading required package: parallel
@@ -360,7 +379,8 @@ The output:
 
 ```
 head /.mounts/example_github/Example/bams/control1/control1_raw_pileup.txt
-  
+  ```
+```
 chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP
 chr9	5073732	+	A	9	7001	0.00128553063848022	JAK2_001
 chr9	5073732	+	G	2	7001	0.000285673475217826	JAK2_001
@@ -409,7 +429,8 @@ Run Annotate_SNVs.R with the required input parameters:
     
 ```
 Rscript Annotate_SNVs.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
-  
+  ```
+```
 Loading required package: BiocGenerics
 Loading required package: parallel
 
@@ -494,7 +515,8 @@ The output:
 
 ```
 head /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt
-  
+  ```
+```
 smMIP	chr	pos	ref	alt	gene	protein	cosmic	maf	variant_type	cadd_scaled
 JAK2_001	chr9	5073732	T	A	JAK2	ENST00000539801:L604H; ENST00000381652:L604H; ENST00000544510:L455H	NA	NA	missense_variant	31
 JAK2_001	chr9	5073733	T	A	JAK2	ENST00000539801:L604L; ENST00000381652:L604L; ENST00000544510:L455L	NA	NA	synonymous_variant	9.98999977111816
