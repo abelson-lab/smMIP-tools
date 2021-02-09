@@ -153,7 +153,11 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
   pile_sscs[,c("a","b") := list(coverage_at_position,VAF)]
   pile_sscs[,coverage_at_position := sum(count),by=list(seqnames,pos,strand,smMIP)] #total SSCS coverage
   pile_sscs[,count := sum(count),by=list(seqnames,pos,strand,smMIP,nucleotide)] #total SSCS supporting reads for each allele
-  pile_sscs[,c("family_sizes","VAF_in_families","UMI") := list(paste(a,collapse=","),paste(b,collapse=","),paste(UMI,collapse=",")),by=list(seqnames,pos,strand,smMIP,nucleotide)]
+  if(opt$umi=="T"){
+    pile_sscs[,c("family_sizes","VAF_in_families","UMI") := list(paste(a,collapse=","),paste(b,collapse=","),paste(UMI,collapse=",")),by=list(seqnames,pos,strand,smMIP,nucleotide)]
+  } else if (opt$umi=="F"){
+      pile_sscs[,c("family_sizes","VAF_in_families") := list(paste(a,collapse=","),paste(b,collapse=",")),by=list(seqnames,pos,strand,smMIP,nucleotide)]
+    }
   pile_sscs=unique(pile_sscs[,c("VAF","a","b") := list(count/coverage_at_position,NULL,NULL)])
   names(pile_sscs)[1]="chr"
   pile_sscs=pile_sscs[!(paste(smMIP,chr,pos,nucleotide) %in% paste(tmp1$smMIP,tmp1$chr,tmp1$pos,tmp1$ref))] #remove the reference alleles based on the nucleutides indicated in the smMIP design file
