@@ -533,7 +533,9 @@ JAK2_001	chr9	5073740	A	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENS
   
   
   
-  
+ Other files, annotated by other tools can be used as long as the column names are preserved
+ 
+ 
  The -f input shuold be a tab delimeted file describing whether :
        1) A single sample should be investigated using a matched control sample to model allele specific background error rates.
        2) A single or multiple samples should be investigated, using an independent set of control samples to model allele specific background error rates.
