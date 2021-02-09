@@ -46,7 +46,8 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
 
 ```
 Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
-  
+  ```  
+```
 Loading required package: GenomeInfoDb
 Loading required package: BiocGenerics
 Loading required package: parallel
