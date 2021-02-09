@@ -529,8 +529,17 @@ JAK2_001	chr9	5073738	A	A	JAK2	ENST00000539801:H606H; ENST00000381652:H606H; ENS
 JAK2_001	chr9	5073739	C	A	JAK2	ENST00000539801:H606Q; ENST00000381652:H606Q; ENST00000544510:H457Q	COSM29116,haematopoietic and lymphoid tissue	0.000144591296666667	missense_variant	26.8999996185303
 JAK2_001	chr9	5073740	A	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENST00000544510:K458K	NA	NA	synonymous_variant	0
   ```
-
-
-
-
+  
+  
+  
+  
+  
+ The -f input shuold be a tab delimeted file describing whether :
+       1) A single sample should be investigated using a matched control sample to model allele specific background error rates.
+       2) A single or multiple samples should be investigated, using an independent set of control samples to model allele specific background error rates.
+       3) Multiple samples should be investigated witout the use of a seperate control set.
+       See the supllied example file and the smMIP-tools manual for more information 
+  
+  
+  
 Who to contact: sagi.abelson@gmail.com
