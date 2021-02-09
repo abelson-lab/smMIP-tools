@@ -253,7 +253,7 @@ Run smMIP_level_raw_and_consensus_pileups.R with the required input parameters:
 \*smMIP_level_raw_and_consensus_pileups.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/smMIP_level_raw_and_consensus_pileups_MULTIPLE_BAMS.sh)
 
 ```
-Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt
+Rscript smMIP_level_raw_and_consensus_pileups.R -b /.mounts/example_github/Example/bams/control1/control1_clean.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -o /.mounts/example_github/Example/pileup/
   ```
 ```  
 Loading required package: GenomeInfoDb
@@ -320,10 +320,13 @@ The following objects are masked from ‘package:S4Vectors’:
         Run Parameters
 ###############################
 $bam.file
-[1] "/.mounts/example_github/Example/bams/control1/control1_clean.bam"
+[1] "/.mounts/example_github/Example/bams//control1/control1_clean.bam"
 
 $panel.file
 [1] "/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt"
+
+$output
+[1] "/.mounts/example_github/Example/pileup/"
 
 $code
 [1] "/.mounts/example_github/R"
@@ -355,9 +358,6 @@ $threads
 $help
 [1] FALSE
 
-$output
-[1] "/.mounts/example_github/Example/bams/control1"
-
 $sample.name
 [1] "control1"
 
@@ -365,10 +365,10 @@ $sample.name
             Running...
 ###############################
 Loading bam
-Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/bams/control1
+Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/pileup/
 Creating smMIP based pileups :  100%         
 Writing raw pileup file to disk
-Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/bams/control1
+Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/pileup/
 Creating smMIP-UMI consensus pileups :  100%     
 Writing SSCS pileup file
 ###############################
