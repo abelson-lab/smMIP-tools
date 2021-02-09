@@ -1,0 +1,37 @@
+id	type	replicate
+case1_rep1_raw_pileup.txt	case	1
+case1_rep2_raw_pileup.txt	case	1
+case2_rep1_raw_pileup.txt	case	2
+case2_rep2_raw_pileup.txt	case	2
+case3_rep1_raw_pileup.txt	case	3
+case3_rep2_raw_pileup.txt	case	3
+case4_rep1_raw_pileup.txt	case	4
+case4_rep2_raw_pileup.txt	case	4
+case5_rep1_raw_pileup.txt	case	5
+case5_rep2_raw_pileup.txt	case	5
+case6_rep1_raw_pileup.txt	case	6
+case6_rep2_raw_pileup.txt	case	6
+case7_rep1_raw_pileup.txt	case	7
+case7_rep2_raw_pileup.txt	case	7
+case8_rep1_raw_pileup.txt	case	8
+case8_rep2_raw_pileup.txt	case	8
+case9_rep1_raw_pileup.txt	case	9
+case9_rep2_raw_pileup.txt	case	9
+case10_rep1_raw_pileup.txt	case	10
+case10_rep2_raw_pileup.txt	case	10
+control1_raw_pileup.txt	control	
+control2_raw_pileup.txt	control	
+control3_raw_pileup.txt	control	
+control4_raw_pileup.txt	control	
+control5_raw_pileup.txt	control	
+control6_raw_pileup.txt	control	
+control7_raw_pileup.txt	control	
+control8_raw_pileup.txt	control	
+control9_raw_pileup.txt	control	
+control10_raw_pileup.txt	control	
+control11_raw_pileup.txt	control	
+control12_raw_pileup.txt	control	
+control13_raw_pileup.txt	control	
+control14_raw_pileup.txt	control	
+control15_raw_pileup.txt	control	
+control16_raw_pileup.txt	control
