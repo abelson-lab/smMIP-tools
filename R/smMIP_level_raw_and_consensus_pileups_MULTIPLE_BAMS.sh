@@ -16,6 +16,8 @@ BAM=/.mounts/example_github/Example/bams/  #CHANGE HERE (this is the folder that
 #Enter the path to the smMIP-design file
 TARGET=/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt  #CHANGE HERE
 
+#Enter the path for the output
+BAM=/.mounts/example_github/Example/pileup/ #CHANGE HERE
 
 for file in $( ls $BAM/*/*clean.bam ); do
 
@@ -23,7 +25,7 @@ for file in $( ls $BAM/*/*clean.bam ); do
         SAMPLE=$(basename $(echo $file | sed 's/_clean.bam.*//'))  #Please note the sample name is extracted from the clean bam file name. Assumed to be sample_clean.bam 
         echo -e "#!/bin/bash -l\n#$ -S /bin/bash\n#$ -cwd\n\n" > automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
         echo -e "module load rstats/3.6\n" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh #Loading R. Delete this line if R is rooted. CHANGE the module name to your R module if it isnt.
-        echo -e "Rscript smMIP_level_raw_and_consensus_pileups.R -b $file -p $TARGET" -o your_folder_of_choice_CHANGE_HERE >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
+        echo -e "Rscript smMIP_level_raw_and_consensus_pileups.R -b $file -p $TARGET -o $OUT" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
 
         ### RUNNING THE SCRIPT
         qsub -l h_vmem=16g automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
