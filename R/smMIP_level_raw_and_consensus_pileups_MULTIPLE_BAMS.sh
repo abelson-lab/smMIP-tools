@@ -17,7 +17,7 @@ BAM=/.mounts/example_github/Example/bams/  #CHANGE HERE (this is the folder that
 TARGET=/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt  #CHANGE HERE
 
 #Enter the path for the output
-BAM=/.mounts/example_github/Example/pileup/ #CHANGE HERE
+OUT=/.mounts/example_github/Example/pileup/ #CHANGE HERE
 
 for file in $( ls $BAM/*/*clean.bam ); do
 
