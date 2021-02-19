@@ -557,7 +557,8 @@ Run calling_mutations.R with the required input parameters:
    ```
 ```  
 Rscript calling_mutations.R -s /.mounts/example_github/Example/pileup -f /.mounts/example_github/Example/supplemental_files/configuration.txt -a /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt 
-  
+  ```
+```
 ###############################
         Run Parameters
 ###############################
