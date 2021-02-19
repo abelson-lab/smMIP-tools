@@ -368,7 +368,7 @@ Loading bam
 Creating smMIP-level raw pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/pileup/
 Creating smMIP based pileups :  100%         
 Writing raw pileup file to disk
-Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/labs/abelsonlab/private/smMIP_ARCH/CODE/example_github/Example/pileup/
+Creating smMIP and UMI level pileups. Please notice, temporary files will be written in /.mounts/example_github/Example/pileup/
 Creating smMIP-UMI consensus pileups :  100%     
 Writing SSCS pileup file
 ###############################
@@ -379,7 +379,7 @@ Writing SSCS pileup file
 The output:
 
 ```
-head /.mounts/example_github/Example/bams/control1/control1_raw_pileup.txt
+head /.mounts/example_github/Example/pileup/control1_raw_pileup.txt
   ```
 ```
 chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP
@@ -394,7 +394,7 @@ chr9	5073735	+	A	4	7001	0.000571346950435652	JAK2_001
 chr9	5073735	-	A	20	6936	0.00288350634371396	JAK2_001
   ```
 ```
-head /.mounts/example_github/Example/bams/control1/control1_sscs_pileup.txt
+head /.mounts/example_github/Example/pileup/control1_sscs_pileup.txt
   
 chr	pos	strand	nucleotide	count	coverage_at_position	VAF	smMIP	UMI	family_sizes	VAF_in_families
 chr9	5073844	+	G	1	318	0.00314465408805031	JAK2_001	TTAA_AATC	1	1
@@ -556,7 +556,69 @@ Run calling_mutations.R with the required input parameters:
 -o, --output, Path for the output file. If not supplied, the output will be saved within the folder that contain the input configuration file
   
   ```
+```  Rscript calling_mutations.R -s /.mounts/example_github/Example/pileup -f /.mounts/example_github/Example/supplemental_files/configuration.txt -a /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt 
   
+###############################
+        Run Parameters
+###############################
+$summary
+[1] "/.mounts/example_github/Example/pileup"
+
+$file
+[1] "/.mounts/example_github/Example/supplemental_files/configuration.txt"
+
+$alleles
+[1] "/.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt"
+
+$code
+[1] "/.mounts/example_github/R"
+
+$binomial
+[1] "sum"
+
+$overlap.coverage
+[1] 10
+
+$maf
+[1] 0.001
+
+$vaf
+[1] 0.05
+
+$pval
+[1] 0.05
+
+$threads
+[1] 1
+
+$help
+[1] FALSE
+
+$output
+[1] "/.mounts/supplemental_files"
+
+$overlap.coverage2
+[1] 20
+
+###############################
+            Running...
+###############################
+Loading pileup data :  100%     
+Leveraging data from Cosmic and information concerning known polymorphisms to increase sensitivity in those genomic positions... DONE!
+Estimating background error levels and calculating P-values :  100%     
+Ajusting P-values to account for the plus and minus replicated DNA strands... DONE!
+Ajusting P-values to account for overlapping smMIPs... DONE!
+Ajusting P-values to to account for technical replicates... DONE!
+Calling mutations. Applying user-define P-value cut-off... DONE!
+Adding consensus read information :  100%     
+Allele frequencies are now calulated based on both the plus and minus replicated DNA strands
+Writing batch related information (part1)... DONE!
+Adding UMI information concerning potential index-hopping :  100%     
+Allele frequencies are now calulated based on overlapping smMIPs
+Allele frequencies are now calulated based on sample replicates
+Writing batch related information (part2) :  100%     
+[1] "A table reporting the identified mutations (called_mutations.txt) was written to /.mounts/example_github/Example/supplemental_files"
+  ```  
  
   
   
