@@ -554,9 +554,9 @@ Run calling_mutations.R with the required input parameters:
 -p, --pval. default=0.05. P-value cut-off to call mutations. If set to '1' all the alleles with p-value<=0.05 prior to Bonferroni correction will be reported
 -t, --threads. default=1. Specify the number of threads to use for parallel processing
 -o, --output, Path for the output file. If not supplied, the output will be saved within the folder that contain the input configuration file
-  
-  ```
-```  Rscript calling_mutations.R -s /.mounts/example_github/Example/pileup -f /.mounts/example_github/Example/supplemental_files/configuration.txt -a /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt 
+   ```
+```  
+Rscript calling_mutations.R -s /.mounts/example_github/Example/pileup -f /.mounts/example_github/Example/supplemental_files/configuration.txt -a /.mounts/example_github/Example/supplemental_files/annotated_Target_MIPgen.txt 
   
 ###############################
         Run Parameters
