@@ -621,10 +621,6 @@ Writing batch related information (part2) :  100%
 [1] "A table reporting the identified mutations (called_mutations.txt) was written to /.mounts/example_github/Example/supplemental_files"
   ```  
 ## THE FINAL OUTPUT
-| Program | Packages                                       |
-| ------------------------|------------------------- |
-
-
 | sample_ID | smMIP |	chr |	pos |	ref |	alt |	gene | protein | cosmic |	maf |	variant_type | cadd_scaled | P-value | P-value.Bonferroni |	num.pval.pass |	pass.pval.in.pairs |	non.ref.counts |	total.depth |	allele.frequency |	samples.with.higher.vaf |	higher.vaf |	lower.vaf | SSCS.non.ref.counts |	SSCS.total.depth |	SSCS.family.size |	SSCS.in.family.non.ref.vaf |	SSCS.allele.frequency | SSCS.overlap | flags |
 | --| --| --|	--|	--| --|	--| --| --|	--|	--| --| --| --|	--|	--|	--|	--|	--|	--| --|	--| --| --|	--|	--|	--|	--| --|
 | case1_rep1,case1_rep2 |	JAK2_001 | chr9 |	5073770 |	G |	T |	JAK2 | ENST00000539801:V617F; ENST00000381652:V617F; ENST00000544510:V468F |	COSM12600,haematopoietic and lymphoid tissue,lung,central nervous system | 0.000499393 | missense_variant |	33 | 8.12E-89 |	6.14E-86 | 6 | 3 | 575 | 18098 |	0.031771466 |	1 |	0.046512 | 0.029589,0.002016,0.002016 |	25 | 888 | 38,32,33,15,1,1,1,1:D:38,32,33,15,1,1:R:55,12,17,6,22,1:D:55,12,17,6,22 | 0.973684210526316,1,1,1,1,1,1,1:D:0.973684210526316,1,1,1,1,1:R:1,1,1,1,1,1:D:1,1,1,1,1 |	0.028153153 |	12.5,16.67 | |
