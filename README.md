@@ -1,4 +1,4 @@
-# smMIP-tools: a computational toolset for processing and analysis of single molecule molecular-inversion-probes derived data
+# smMIP-tools: a computational toolset for processing and analysis of single-molecule molecular inversion probes derived data
 
 Here we present an example of how to use smMIP-tools to process and analyze sequencing data obtained from targeted smMIP panels. 
 The pipeline covers the following topics:
