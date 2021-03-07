@@ -538,6 +538,11 @@ The final output includes comprehensive allele specific information including ke
 ### Configuration 
 1) Create a assay configuration file. The file need to include the sample names. It need to descibe which of the samples are cases and which are the controls that will be used for error modeling. If you dont have controls that is fine, the code also works for cases only. Lastly, you will need to indicate whether your samples were run in technical replicates (highly recommended, has a major impact on removing false positives). Leave the column named 'replicate' empty if you dont have replicates. Otherwise this column should be filled with unique incrementing numbers such as that replicate1 and replicate2 from sample1 will both get the value of '1'. replicate1 and replicate2 from sample2 will get '2' and so forth. A assay configuration file that will work with the supplied example data is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/configuration.txt). 
 
+
+ echo -e "id\ttype\treplicate" > configuration.txt; i=0 ; a=0;  for f in *SE*raw*; do let a++; if (( $a % 2 ));then let i++; fi;  n=${f%_raw*}; echo -e "$n\tcase\t$i" >> configuration.txt; done  
+
+
+
 2) 
 ### Running the code
 Run calling_mutations.R with the required input parameters:  
