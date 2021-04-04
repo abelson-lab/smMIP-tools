@@ -537,12 +537,15 @@ The final output includes comprehensive allele specific information including ke
 
 ### Configuration 
 Create a assay configuration file. The file need to include the sample names. It need to descibe which of the samples are cases and which are the controls that will be used for error modeling. If you dont have controls that is fine, the code also works for cases only. Lastly, you will need to indicate whether your samples were run in technical replicates (highly recommended, has a major impact on removing false positives). Leave the column named 'replicate' empty if you dont have replicates. Otherwise this column should be filled with unique incrementing numbers such as that replicate1 and replicate2 from sample1 will both get the value of '1'. replicate1 and replicate2 from sample2 will get '2' and so forth. A assay configuration file that will work with the supplied example data is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/configuration.txt). 
-you can also use the bash code below to generate a configuration file that will work if the folowing roles are applied:
+you can also use the bash code below to generate a configuration file that will work if the folowing rules are applied:
 1) Your samples were run in replicates and the sample file names are inherently sorted in pairs. That is, file names sample_name_replicate1_raw_pileup.txt and sample_name_replicate2_raw_pileup.txt will work. sample_x_raw_pileup.txt and sample_y_raw_pileup.txt will not. 
 2) There are only cases and no controls
-3) The code is excuted from the folder that contain the base summary files 
+3) The code is excuted from the folder that contain the base summary files (pileup)
 
 echo -e "id\ttype\treplicate" > configuration.txt; i=0 ; a=0;  for f in *raw*; do let a++; if (( $a % 2 ));then let i++; fi;  n=${f%_raw*}; echo -e "$n\tcase\t$i" >> configuration.txt; done  
+
+If sequencing for samples was done in duplicates and one of the replicates for a particular sample/s failed, you should still include it in the configuration file.
+smMIP-tools will recognize that the file is missing and will create an empty pileup. This is necessary to flag mutations properly.
 
 ### Running the code
 Run calling_mutations.R with the required input parameters:  
