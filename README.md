@@ -639,9 +639,8 @@ Writing batch related information (part2) :  100%
 To use smMIP-tools flags to further rank and prioretize your mutation calls make sure that you fully understand the output.
 Here is how each column should be interpreted:
 
-|  sample_ID | The name of the sample or samples (if technical replicates were used) |
-| ------------------------|------------------------- |
-|  smMIP | The name of the smMIP or smMIPs (if overlapping smMIPs present) |   
+**sample_ID** : The name of the sample or samples (if technical replicates were used) 
+**smMIP** : The name of the smMIP or smMIPs (if overlapping smMIPs present)
 
 When you analyzing your own data also take a look at our [manuscript] and the included supplamantary note for an example of how to use smMIP-tools flags to further
 rank and prioretize your mutation calls.
