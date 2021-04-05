@@ -636,8 +636,8 @@ Writing batch related information (part2) :  100%
 | case3_rep1,case3_rep2	| JAK2_001 |chr9 | 5073770 | G | T | JAK2 | ENST00000539801:V617F; ENST00000381652:V617F; ENST00000544510:V468F | COSM12600,haematopoietic and lymphoid tissue,lung,central nervous system | 0.000499393 | missense_variant |33 | 8.87E-10 | 6.70E-07 | 6 | 3 | 32 | 688 | 0.046511628 | 0 | NA | 	0.031771,0.029589,0.002016 | 32 | 180 | 1,1,1,1,1,1,1:D:1,1,1,1,1,1,1:R:1,1,1,1,1,1,1,1,1:D:1,1,1,1,1,1,1,1,1 | 1,1,1,1,1,1,1:D:1,1,1,1,1,1,1:R:1,1,1,1,1,1,1,1,1:D:1,1,1,1,1,1,1,1,1 | 0.177777778 | 14.29,0	| |
 | case3_rep1,case3_rep2 | JAK2_001 | chr9 | 5073769 | T | G | JAK2 | ENST00000539801:C616W; ENST00000381652:C616W; ENST00000544510:C467W | NA | NA |	missense_variant | 32 | 5.93E-05 | 0.044824976 | 1 | 1 | 2 | 221 | 0.009049774 | 0 | NA | 0.000283,0.00021,0.000203 | 2 | 50 | NA:D:NA:R:1,1:D:NA | 	NA:D:NA:R:1,1:D:NA | 0.04 | 0,0 | Cannot be supported by both tehcnical replicates. (Low coverage in sample:case3_rep1), Cannot be supported by both Read1 and Read2 generated from smMIP: JAK2_001. (Low coverage in sample: case3_rep2), No SSCS support in one of the replicates |
 
-To use smMIP-tools flags and the generated cohort level and consensus read concerning data to further rank and prioritize your mutation calls make sure that you fully understand the output.
-Here is how each column should be interpreted:
+Be sure to fully understand the output if you would like to fully use smMIP-tools flags, the generated cohort level information and consensus read concerning data to further rank and prioritize your mutation calls.
+See below the output column names and their meaning.
 
 ___
 **sample_ID** :  Name of the sample (or samples if technical replicates were used) 
