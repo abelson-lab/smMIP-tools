@@ -688,7 +688,7 @@ ___
 ___
 **SSCS.total.depth** : Number of single strand consensus reads covering the genomic position
 ___
-**SSCS.family.size** : The number of reads that were used to assably each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...)
+**SSCS.family.size** : The number of reads that were used to assably each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...).  Failure to detect an allele with consensus reads in any of the options reduce the chance that the mutation is authentic  
 ___
 **SSCS.in.family.non.ref.vaf** : The presentage of raw reads supporting the alternative allele for each family reported in SSCS.family.size. 
 ___
@@ -699,14 +699,6 @@ ___
 
 
 
-
-
-
-
-
-
-When you analyzing your own data also take a look at our [manuscript] and the included supplamantary note for an example of how to use smMIP-tools flags to further
-rank and prioretize your mutation calls.
 
 
 
