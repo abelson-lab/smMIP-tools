@@ -644,7 +644,7 @@ ___
 ___
 **smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) 
 ___
-**chr** :  Chromosom 
+**chr** :  Chromosome
 ___
 **pos** :  Genomic position 
 ___
@@ -654,7 +654,7 @@ ___
 ___
 **gene** : Gene ID 
 ___
-**protein** :  Amino acid change. Ensembl transcript are indicated if the change is different for different transcripts  
+**protein** :  Amino acid change. Ensembl transcripts are indicated if the change is different for different transcripts  
 ___
 **cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID 
 ___
@@ -668,9 +668,9 @@ ___
 ___
 **P-value.Bonferroni** : Bonferroni corrected P-value, derived from the error-rate model
 ___
-**num.pval.pass** : Indicates the number of samples in the cohort with the same allele recieved P-value.Bonferroni that is lower or equal to the user defined threshold 
+**num.pval.pass** : Indicates the number of samples in the cohort with the same allele received P-value.Bonferroni that is lower or equal to the user defined threshold 
 ___
-**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that recieved P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
+**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that received P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
 ___
 **non.ref.counts** : Number of reads supporting the alternative allele
 ___
@@ -678,19 +678,19 @@ ___
 ___
 **allele.frequency** : non.ref.counts divided by total.depth 
 ___
-**samples.with.higher.vaf** : Number of samples in the cohort that were obsereved with allele.frequency that is with higher than in the reported sample
+**samples.with.higher.vaf** : Number of samples in the cohort that were observed with allele.frequency that is with higher than in the reported sample
 ___
 **higher.vaf** : allele.frequency in the samples in the cohort with the higher allele.frequency (maximum 3)
 ___
-**lower.vaf** : allele.frequency in samples in the cohort that were obsereved with allele.frequency that is with lower than in the reported sample (maximum 3)
+**lower.vaf** : allele.frequency in samples in the cohort that were observed with allele.frequency that is with lower than in the reported sample (maximum 3)
 ___
 **SSCS.non.ref.counts** : Number of single strand consensus reads supporting the alternative allele
 ___
 **SSCS.total.depth** : Number of single strand consensus reads covering the genomic position
 ___
-**SSCS.family.size** : The number of reads that were used to assably each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...).  Failure to detect an allele with consensus reads in any of the options reduce the chance that the mutation is authentic. 
+**SSCS.family.size** : The number of reads that were used to assemble each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...).  Failure to detect an allele with consensus reads in any of the options reduce the chance that the mutation is authentic. 
 ___
-**SSCS.in.family.non.ref.vaf** : The presentage of raw reads supporting the alternative allele for each family reported in SSCS.family.size. Detecting an allele with only low SSCS.in.family.non.ref.vafs reduce the chance that the mutation is real. Moreover, if the sum of SSCS.family.size multiplied by  SSCS.in.family.non.ref.vaf is much lower than the non.ref.counts value it indicates that many reads failed to generate consensus, also reducing the chance that the mutation is authentic
+**SSCS.in.family.non.ref.vaf** : The percentage of raw reads supporting the alternative allele for each family reported in SSCS.family.size. Detecting an allele with only low SSCS.in.family.non.ref.vafs reduce the chance that the mutation is real. Moreover, if the sum of SSCS.family.size multiplied by  SSCS.in.family.non.ref.vaf is much lower than the non.ref.counts value it indicates that many reads failed to generate consensus, also reducing the chance that the mutation is authentic
 ___
 
 
