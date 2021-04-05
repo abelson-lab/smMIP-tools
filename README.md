@@ -639,6 +639,7 @@ Writing batch related information (part2) :  100%
 To use smMIP-tools flags to further rank and prioretize your mutation calls make sure that you fully understand the output.
 Here is how each column should be interpreted:
 
+___
 | **sample_ID** :  Name of the sample (or samples if technical replicates were used) |
 | **smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) |
 | **chr** :  Chromosom |
@@ -651,6 +652,7 @@ Here is how each column should be interpreted:
 | **cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID |
 | **maf** : Minor allele frequency |
 | **variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  |
+___
 
 
 
