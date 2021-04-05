@@ -662,6 +662,42 @@ ___
 ___
 **variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  
 ___
+**cadd_scaled** : Combined Annotation Dependent Depletion (Scaled)
+___
+**P-value** : Raw P-value, derived from the error-rate model
+___
+**P-value.Bonferroni** : Bonferroni corrected P-value, derived from the error-rate model
+___
+**num.pval.pass** : Indicates the number of samples in the cohort with the same allele recieved P-value.Bonferroni that is lower or equal to the user defined threshold 
+___
+**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that recieved P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
+___
+**non.ref.counts** : Number of reads supporting the alternative allele
+___
+**total.depth** : Number of reads covering the genomic position
+___
+**allele.frequency** : non.ref.counts divided by total.depth 
+___
+**samples.with.higher.vaf** : Number of samples in the cohort that were obsereved with allele.frequency that is with higher than in the reported sample
+___
+**higher.vaf** : allele.frequency in the samples in the cohort with the higher allele.frequency (maximum 3)
+___
+**lower.vaf** : allele.frequency in samples in the cohort that were obsereved with allele.frequency that is with lower than in the reported sample (maximum 3)
+___
+**SSCS.non.ref.counts** : Number of single strand consensus reads supporting the alternative allele
+___
+**SSCS.total.depth** : Number of single strand consensus reads covering the genomic position
+___
+**SSCS.family.size** : The number of reads that were used to assably each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...)
+___
+**SSCS.in.family.non.ref.vaf** : The presentage of raw reads supporting the alternative allele for each family reported in SSCS.family.size. 
+___
+
+
+
+
+
+
 
 
 
