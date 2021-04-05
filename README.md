@@ -640,18 +640,27 @@ To use smMIP-tools flags to further rank and prioretize your mutation calls make
 Here is how each column should be interpreted:
 
 ___
-| **sample_ID** :  Name of the sample (or samples if technical replicates were used) |
-| **smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) |
-| **chr** :  Chromosom |
-| **pos** :  Genomic position |
-| **ref** : Reference allele |
-| **alt** : Alternative allele |
-| **gene** : Gene ID |
-| **gene** : Gene ID |
-| **protein** :  Amino acid change. Ensembl transcript are indicated if the change is different for different transcripts  |
-| **cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID |
-| **maf** : Minor allele frequency |
-| **variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  |
+**sample_ID** :  Name of the sample (or samples if technical replicates were used) 
+___
+**smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) 
+___
+**chr** :  Chromosom 
+___
+**pos** :  Genomic position 
+___
+**ref** : Reference allele 
+___
+**alt** : Alternative allele 
+___
+**gene** : Gene ID 
+___
+**protein** :  Amino acid change. Ensembl transcript are indicated if the change is different for different transcripts  
+___
+**cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID 
+___
+**maf** : Minor allele frequency 
+___
+**variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  
 ___
 
 
