@@ -662,7 +662,7 @@ ___
 ___
 **variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  
 ___
-**cadd_scaled** : Combined Annotation Dependent Depletion (Scaled)
+**cadd_scaled** : Combined Annotation Dependent Depletion (Scaled). A deleteriousness score. For example, a scaled score of 10 or greater indicates that the variant is among the top 10% deleterious SNVs of all possible reference genome SNVs, and a score of 20 or greater indicates a in the top 1%
 ___
 **P-value** : Raw P-value, derived from the error-rate model
 ___
