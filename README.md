@@ -642,25 +642,15 @@ Here is how each column should be interpreted:
 | **sample_ID** :  Name of the sample (or samples if technical replicates were used) |
 | ------------------------------------------------- |
 | **smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) |
-| ------------------------------------------------- |
 | **chr** :  Chromosom |
-| ------------------------------------------------- |
 | **pos** :  Genomic position |
-| ------------------------------------------------- |
 | **ref** : Reference allele |
-| ------------------------------------------------- |
 | **alt** : Alternative allele |
-| ------------------------------------------------- |
 | **gene** : Gene ID |
-| ------------------------------------------------- |
 | **gene** : Gene ID |
-| ------------------------------------------------- |
 | **protein** :  Amino acid change. Ensembl transcript are indicated if the change is different for different transcripts  |
-| ------------------------------------------------- |
 | **cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID |
-| ------------------------------------------------- |
 | **maf** : Minor allele frequency |
-| ------------------------------------------------- |
 | **variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  |
 
 
