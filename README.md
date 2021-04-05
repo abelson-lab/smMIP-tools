@@ -640,7 +640,6 @@ To use smMIP-tools flags to further rank and prioretize your mutation calls make
 Here is how each column should be interpreted:
 
 | **sample_ID** :  Name of the sample (or samples if technical replicates were used) |
-| ------------------------------------------------- |
 | **smMIP** : Name of the smMIP (or smMIPs if overlapping smMIPs present) |
 | **chr** :  Chromosom |
 | **pos** :  Genomic position |
