@@ -678,11 +678,11 @@ ___
 ___
 **allele.frequency** : non.ref.counts divided by total.depth 
 ___
-**samples.with.higher.vaf** : Number of samples in the cohort that were observed with allele.frequency that is with higher than in the reported sample
+**samples.with.higher.vaf** : Number of samples in the cohort that were observed with allele.frequency that is with higher than in the reported sample. High values reduce the chance that the mutation is authentic. Particularly, when Cosmic IDs are absence
 ___
 **higher.vaf** : allele.frequency in the samples in the cohort with the higher allele.frequency (maximum of 3 VAFs are reported)
 ___
-**lower.vaf** : allele.frequency in samples in the cohort that were observed with allele.frequency that is lower than in the reported sample (maximum of 3 VAFs are reported). The “VAF Warning” flag is generated if the allele.frequency value divided by the second VAF in the lower.vaf string is below the user defined value (default=2).
+**lower.vaf** : allele.frequency in samples in the cohort that were observed with allele.frequency that is lower than in the reported sample (maximum of 3 VAFs are reported). High VAFs values (e.g., higher than 0.01) or those similar to the allele.frequency value increase the chance for a false positive call. The “VAF Warning” flag is generated if the allele.frequency value divided by the second VAF in the lower.vaf string is below the user defined value (default=2). 
 ___
 **SSCS.non.ref.counts** : Number of single strand consensus reads supporting the alternative allele
 ___
