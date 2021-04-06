@@ -656,21 +656,21 @@ ___
 ___
 **protein** :  Amino acid change. Ensembl transcripts are indicated if the change is different for different transcripts  
 ___
-**cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) ID 
+**cosmic** : Catalogue of Somatic Mutations in Cancer (COSMIC) Identifier 
 ___
 **maf** : Minor allele frequency 
 ___
-**variant_type** :  Annotation concerning location (e.g, "intron_variant", "splice_donor_variant") and type of codon change ("stop_gained"                        "synonymous_variant")  
+**variant_type** :  Annotation concerning high level genomic location (e.g, "intron_variant", "splice_donor_variant") and the consequences of the variant ("stop_gained", "synonymous_variant") 
 ___
-**cadd_scaled** : Combined Annotation Dependent Depletion (Scaled). A deleteriousness score. For example, a scaled score of 10 or greater indicates that the variant is among the top 10% deleterious SNVs of all possible reference genome SNVs, and a score of 20 or greater indicates a in the top 1%
+**cadd_scaled** : Combined Annotation Dependent Depletion (Scaled). A deleteriousness score. For example, a scaled score of 10 or greater indicates that the variant is among the top 10% deleterious SNVs of all possible reference genome SNVs, and a score of 20 or greater indicates in the top 1%
 ___
 **P-value** : Raw P-value, derived from the error-rate model
 ___
-**P-value.Bonferroni** : Bonferroni corrected P-value, derived from the error-rate model
+**P-value.Bonferroni** : Bonferroni corrected P-value
 ___
-**num.pval.pass** : Indicates the number of samples in the cohort with the same allele received P-value.Bonferroni that is lower or equal to the user defined threshold 
+**num.pval.pass** : Indicates the number of samples in the cohort with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold 
 ___
-**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that received P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
+**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
 ___
 **non.ref.counts** : Number of reads supporting the alternative allele
 ___
@@ -680,17 +680,17 @@ ___
 ___
 **samples.with.higher.vaf** : Number of samples in the cohort that were observed with allele.frequency that is with higher than in the reported sample
 ___
-**higher.vaf** : allele.frequency in the samples in the cohort with the higher allele.frequency (maximum 3)
+**higher.vaf** : allele.frequency in the samples in the cohort with the higher allele.frequency (maximum of 3 VAFs are reported)
 ___
-**lower.vaf** : allele.frequency in samples in the cohort that were observed with allele.frequency that is with lower than in the reported sample (maximum 3)
+**lower.vaf** : allele.frequency in samples in the cohort that were observed with allele.frequency that is lower than in the reported sample (maximum of 3 VAFs are reported). The “VAF Warning” flag is generated if the allele.frequency value divided by the second VAF in the lower.vaf string is below the user defined value (default=2).
 ___
 **SSCS.non.ref.counts** : Number of single strand consensus reads supporting the alternative allele
 ___
 **SSCS.total.depth** : Number of single strand consensus reads covering the genomic position
 ___
-**SSCS.family.size** : The number of reads that were used to assemble each consensus sequence. The seperators D,S, and R represent dna strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...)  In each replicate consensus reads derived from for one of two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...).  Failure to detect an allele with consensus reads in any of the options reduce the chance that the mutation is authentic. 
+**SSCS.family.size** : The number of reads that were used to assemble each consensus sequence (read-families). The separators D,S, and R represent DNA-strand, smMIP and replicate respectively. For example, 24,63:D:24,63:S:1:D:1:R:36:D:36:S:1:D:1 indicates that the allele was detected with consensus reads in both the replicates (...:R:...).  In each replicate consensus reads were detected from each of the two overlapping smMIPs (...:S:...). Moreover, consensus reads derived from both Read1 and Read2 in each smMIP (...:D:...).  Failure to detect an allele with consensus reads in any of the options reduce the chance that the mutation is authentic.
 ___
-**SSCS.in.family.non.ref.vaf** : The percentage of raw reads supporting the alternative allele for each family reported in SSCS.family.size. Detecting an allele with only low SSCS.in.family.non.ref.vafs reduce the chance that the mutation is real. Moreover, if the sum of SSCS.family.size multiplied by  SSCS.in.family.non.ref.vaf is much lower than the non.ref.counts value it indicates that many reads failed to generate consensus, also reducing the chance that the mutation is authentic
+**SSCS.in.family.non.ref.vaf** : The percentage of raw reads supporting the alternative allele for every matching family reported in SSCS.family.size. Detecting an allele with only low SSCS.in.family.non.ref.vafs reduce the chance that the mutation is real. Moreover, if the sum of SSCS.family.size multiplied by  SSCS.in.family.non.ref.vaf is much lower than the non.ref.counts value it indicates that many reads failed to generate consensus; also reducing the chance that the mutation is real
 ___
 
 
