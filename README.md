@@ -668,9 +668,9 @@ ___
 ___
 **P-value.Bonferroni** : Bonferroni corrected P-value
 ___
-**num.pval.pass** : Indicates the number of samples in the cohort with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold 
+**num.pval.pass** : Indicates the number of samples in the cohort with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold. A high value might indicate poor performance for the error rate model for this allele.
 ___
-**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples with the allele detected in only one replicate. This might indicate poor performance for the error rate model for this allele and a high probability that the allele was called in both the technical replicates by chance
+**pass.pval.in.pairs** : Only relevant when technical replicates were used. Indicates the number of sample-duplicates with the same allele that received a P-value.Bonferroni that is lower or equal to the user defined threshold. For example, a pass.pval.in.pairs=1 and a num.pval.pass=30 indicates that there are 28 samples where the allele detected in only one replicate. This might suggest high probability that the allele was called in both the technical replicates in this one sample by chance
 ___
 **non.ref.counts** : Number of reads supporting the alternative allele
 ___
