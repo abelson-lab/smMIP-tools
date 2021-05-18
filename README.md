@@ -693,16 +693,8 @@ ___
 **SSCS.in.family.non.ref.vaf** : The percentage of raw reads supporting the alternative allele for every matching family reported in SSCS.family.size. Detecting an allele with only low SSCS.in.family.non.ref.vafs reduce the chance that the mutation is real. Moreover, if the sum of SSCS.family.size multiplied by  SSCS.in.family.non.ref.vaf is much lower than the non.ref.counts value it indicates that many reads failed to generate consensus; also reducing the chance that the mutation is real
 ___
 
+```  
+```  
 
-
-
-
-
-
-
-
-
-![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+)
-
-For any inquiries concerning smMIP-tools or collaboration opportunities please contact:
-sagi.abelson@gmail.com
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) "For any inquiries concerning smMIP-tools or collaboration opportunities please contact:
+sagi.abelson@gmail.com"
