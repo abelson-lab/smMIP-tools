@@ -694,5 +694,5 @@ ___
 ___
 
 
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)  For any inquiries concerning smMIP-tools or collaboration opportunities please contact:
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+)  For any inquiries concerning smMIP-tools please email:
 sagi.abelson@gmail.com
