@@ -16,8 +16,14 @@ BAM=/.mounts/example_github/Example/bams/  #CHANGE HERE (this is the folder that
 #Enter the path to the smMIP-design file
 TARGET=/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt  #CHANGE HERE
 
-#Enter the path for the output
+#Enter the path for the final output
 OUT=/.mounts/example_github/Example/pileup/ #CHANGE HERE
+
+#Enter the path for temporary files. PLEASE NOTE, this is optional parameter yet, When working on HPC, supplying a local folder to write and read temporary files can increase speed
+TMP=/tmp/SmMIP_tools #CHANGE HERE. Also, delete "-O" below if not being used
+
+#Enter The number of cores to use for parallel processing
+Cores=20 #CHANGE HERE. Also, delete -t below if not being used (can take long if not being used)
 
 for file in $( ls $BAM/*/*clean.bam ); do
 
@@ -25,9 +31,9 @@ for file in $( ls $BAM/*/*clean.bam ); do
         SAMPLE=$(basename $(echo $file | sed 's/_clean.bam.*//'))  #Please note the sample name is extracted from the clean bam file name. Assumed to be sample_clean.bam 
         echo -e "#!/bin/bash -l\n#$ -S /bin/bash\n#$ -cwd\n\n" > automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
         echo -e "module load rstats/3.6\n" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh #Loading R. Delete this line if R is rooted. CHANGE the module name to your R module if it isnt.
-        echo -e "Rscript smMIP_level_raw_and_consensus_pileups.R -b $file -p $TARGET -o $OUT" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
+        echo -e "Rscript smMIP_level_raw_and_consensus_pileups.R -b $file -p $TARGET -o $OUT -O $TMP -t $Cores" >> automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
 
         ### RUNNING THE SCRIPT
-        qsub -l h_vmem=16g automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh
+        qsub -l h_vmem=16g automatic_script_for_smMIP_level_raw_and_consensus_pileups_$SAMPLE.sh #When working on HPC, you may required to define in advance the number of cores being requested to match the -t parameter. (This can be invoked by -pe smp [number of slots] option)
 
 done
