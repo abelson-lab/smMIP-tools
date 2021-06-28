@@ -148,7 +148,8 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
     idx=grep("flag",names(smmip_umi_piles))
     if(length(idx)>0){smmip_umi_piles=smmip_umi_piles[-grep("flag",names(smmip_umi_piles))]}
     if(length(smmip_umi_piles)==0){
-      smmip_piles[[j]]=NULL
+      smmip_piles[[j]]=data.frame("seqnames"=NA, "pos"=NA, "strand"=NA, "nucleotide"=NA, "count"=NA, "coverage_at_position"=NA, "VAF"=NA, "smMIP"=NA, "UMI"=NA)
+      smmip_piles[[j]]=smmip_piles[[j]][-1,]
     } else {
         smmip_piles[[j]]=rbindlist(mclapply(1:length(smmip_umi_piles), mc.cores = opt$threads, mc.cleanup=T,
                mc.silent=F, function(i) {
@@ -162,7 +163,7 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
       system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  100%%     '"))
     }
   }
-  
+    
   system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  100%%     '"))
   cat("\n")
   
