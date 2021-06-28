@@ -147,7 +147,11 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
     smmip_umi_piles=split(rbindlist(smmip_piles[j]), by=c("smmip","umi"))
     idx=grep("flag",names(smmip_umi_piles))
     if(length(idx)>0){smmip_umi_piles=smmip_umi_piles[-grep("flag",names(smmip_umi_piles))]}
-    
+    if(length(smmip_umi_piles)==0){
+      smmip_piles[[j]]=NULL
+      next
+    }
+   
     smmip_piles[[j]]=rbindlist(mclapply(1:length(smmip_umi_piles), mc.cores = opt$threads, mc.cleanup=T,
                mc.silent=F, function(i) {
                  pile=pileup_foreach_smmip.umi(i)
