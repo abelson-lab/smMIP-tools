@@ -149,15 +149,13 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
     if(length(idx)>0){smmip_umi_piles=smmip_umi_piles[-grep("flag",names(smmip_umi_piles))]}
     if(length(smmip_umi_piles)==0){
       smmip_piles[[j]]=NULL
-      next
-    }
-   
-    smmip_piles[[j]]=rbindlist(mclapply(1:length(smmip_umi_piles), mc.cores = opt$threads, mc.cleanup=T,
+    } else {
+        smmip_piles[[j]]=rbindlist(mclapply(1:length(smmip_umi_piles), mc.cores = opt$threads, mc.cleanup=T,
                mc.silent=F, function(i) {
                  pile=pileup_foreach_smmip.umi(i)
                  pile
                }))
-    
+    }
     if(round(j/length(smmip_piles),2) %in% seq(0.01,0.99,0.01)) {
       system(paste0("printf '\\rCreating smMIP-UMI consensus pileups :  ",round(100*j/length(smmip_piles)),"%%     '"))
     } else if (j==length(smmip_piles)){
