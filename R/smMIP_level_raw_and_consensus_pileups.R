@@ -9,7 +9,7 @@ option_list = list(
   make_option(c("-s", "--sample.name"), type="character", default=NULL,help="Sample ID that will be used to name the output file(s). If not provided, the name of the folder containing the bam file is assumed to be the sample name", metavar="character"),
   make_option(c("-o", "--output"), type="character", default=NULL,help="Path for the output pileup file(s). If not supplied, the output will be saved within the folder that contain the bam file", metavar="character"),
   make_option(c("-O", "--tmp.output"), type="character", default=NULL,help="Path for temporary files. If not supplied, the tmp.output will be the same as defined by the -o option. When working on HPC, supplying a local folder to write and read temporary files can increase speed", metavar="character"),
-  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in the same folder as this code (smMIP_specific_raw_and_consensus_pileups.R)", metavar="character"),
+  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in your working directory", metavar="character"),
   make_option(c("-d", "--mnd"), type="integer", default=1,help="Minimum depth to consider in the pileup. ", metavar="character"),
   make_option(c("-m", "--mmq"), type="integer", default=50,help="Minimum mapping quality to consider in the pileup. ", metavar="character"),
   make_option(c("-q", "--mbq"), type="integer", default=10,help="Minimum base quality to consider in the pileup. ", metavar="character"),
