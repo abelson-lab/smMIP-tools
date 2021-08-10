@@ -8,7 +8,7 @@ option_list = list(
   make_option(c("-p", "--panel.file"), type="character", default=NULL,help="Path to the smMIP design file [MENDATORY if -i was not supplied]", metavar="character"),
   make_option(c("-i", "--input"), type="character", default=NULL,help="Path to a tab delimited table with the following columns: chr, pos, ref, alt. [MENDATORY if -p was not supplied]", metavar="character"),
   make_option(c("-o", "--output"), type="character", default=NULL,help="Path for the output (annotated panel). If not supplied, the output will be saved within the folder that contains the smMIP design file/input file", metavar="character"),
-  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in the same folder as this code (Annotate_SNVs.R)", metavar="character"),
+  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in your working directory", metavar="character"),
   make_option(c("-t", "--threads"), type="integer", default=1,help="The number of cores to use for parallel processing", metavar="character"),
   make_option(c("-g", "--genome"), type="character", default="GRCh37",help="The genome assembly to be queried. For all the possible options, please refer to the cellbaseR package documentation", metavar="character"),
   make_option(c("-s", "--species"), type="character", default="hsapiens",help="The species to be queried. For all the possible options, please refer to the cellbaseR package documentation", metavar="character"))
