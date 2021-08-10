@@ -6,7 +6,7 @@ library("optparse")
 #define parameters
 option_list = list(
   make_option(c("-i", "--input"), type="character", default=NULL,help="Path to the output from calling_mutations.R. i.e., called_mutations.txt [MENDATORY]", metavar="character"),
-  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in the same folder as this code (mutation_categories.R)", metavar="character"))
+  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in your working directory", metavar="character"))
 
 #takes user input parameters
 opt_parser = OptionParser(option_list=option_list)
