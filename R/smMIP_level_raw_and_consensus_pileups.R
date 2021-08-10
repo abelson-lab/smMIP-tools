@@ -42,6 +42,7 @@ if (is.null(opt$output)){
 
 if (is.null(opt$tmp.output)){ 
   opt$tmp.output=opt$output
+  del=0
 } else {
   dir.create(opt$tmp.output)
   del=1
