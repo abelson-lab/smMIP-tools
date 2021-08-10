@@ -1,0 +1,37 @@
+id	type	replicate
+case1_rep1	case	1
+case1_rep2	case	1
+case2_rep1	case	2
+case2_rep2	case	2
+case3_rep1	case	3
+case3_rep2	case	3
+case4_rep1	case	4
+case4_rep2	case	4
+case5_rep1	case	5
+case5_rep2	case	5
+case6_rep1	case	6
+case6_rep2	case	6
+case7_rep1	case	7
+case7_rep2	case	7
+case8_rep1	case	8
+case8_rep2	case	8
+case9_rep1	case	9
+case9_rep2	case	9
+case10_rep1	case	10
+case10_rep2	case	10
+control1	control	
+control2	control	
+control3	control	
+control4	control	
+control5	control	
+control6	control	
+control7	control	
+control8	control	
+control9	control	
+control10	control	
+control11	control	
+control12	control	
+control13	control	
+control14	control	
+control15	control	
+control16	control	
