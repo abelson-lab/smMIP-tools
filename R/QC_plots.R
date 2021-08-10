@@ -10,7 +10,7 @@ library("ggrepel")
 ################ DEFINE THE INPUT PARAMETERS
 option_list = list(
   make_option(c("-d", "--dir"), type="character", default=NULL,help="Path to the samples' 'raw_coverage_per_smMIP.txt' and 'filtered_read_counts.txt' files (Need to be in a single folder).", metavar="character"),
-  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in the same folder as this code (QC_plots.R)", metavar="character"),
+  make_option(c("-c", "--code"), type="character", default=getwd(),help="Path to smMIP tools source functions file. If not supplied, it is assumed that the file (smMIPs_Function.R) is located in your working directory", metavar="character"),
   make_option(c("-t", "--type"), type="character", default="smMIP",help="Options are smMIP (default) or gene. If the smMIPs IDs format is Gene_001..., then -t 'gene' can be used. This will color smMIPs targeted the same gene with the same color", metavar="character"))
   
 #Takes user input parameters
