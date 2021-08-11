@@ -43,6 +43,7 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
 -M, --MAPQ, default=50. MAPQ cut-off. Used in the filter.on.mappingscore function
   ```
 \*map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/map_smMIPs_extract_UMIs_MULTIPLE_BAMS.sh)
+
 \*run the code from the R folder which contatin all the R scripts or use the -c parameter to provide the path (dirname only) to the smMIPs_Function.R file. 
 
 ```
