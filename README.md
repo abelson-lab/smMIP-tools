@@ -30,7 +30,7 @@ map_smMIPs_extract_UMIs.R takes as an input a paired-end read alignment bam file
 2) Please generate a single folder and copy into it all the bam files that you want to analyse. We provide [bam files](https://github.com/BioSoft/smMIP-tools/tree/main/Example/bams) that can be used with this manual.  
 
 ### Running the code
-Run map_smMIPs_extract_UMIs.R with the required input parameters:
+Run map_smMIPs_extract_UMIs.R with the required input **parameters**:
 ```
 -b, --bam.file. Path to bam file. [MANDATORY]
 -p, --panel.file. Path to smMIP design file. [MANDATORY]
