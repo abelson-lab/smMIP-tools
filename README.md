@@ -44,7 +44,7 @@ Run map_smMIPs_extract_UMIs.R with the required input parameters:
   ```
 \*map_smMIPs_extract_UMIs.R was built to process one bam file at a time. An example shell script to assign jobs to multiple HPC cluster cores is provided [here](https://github.com/BioSoft/smMIP-tools/blob/main/R/map_smMIPs_extract_UMIs_MULTIPLE_BAMS.sh)
 
-\*run the code from the R folder which contatin all the R scripts or use the -c parameter to provide the path (dirname only) to the smMIPs_Function.R file. 
+\*Run the code from the R folder that contains all the R scripts or use the -c parameter to provide the path (dirname only) to the smMIPs_Function.R file
 
 ```
 Rscript /.mounts/example_github/R/map_smMIPs_extract_UMIs.R -b /.mounts/example_github/Example/bams/control1.bam -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -s control1
