@@ -807,27 +807,26 @@ populate=function(d){
 }
 
 prior.knowledge = function(d){
-  system("printf '\\rLeveraging data from Cosmic and information concerning known polymorphisms to increase sensitivity in those genomic positions...'")
-
-  if(length(unique(d$samples$type))==1 & "case" %in% unique(d$samples$type)){
+  system("printf '\\rLeveraging COSMIC data and information concerning known polymorphisms to increase sensitivity in those genomic positions...'")
+  if(length(unique(d$samples$type)=="case")==1 & "case" %in% unique(d$samples$type)){
     d$control.names=d$samples$id
-  } else if (length(unique(d$samples$type))==2 & "case" %in% unique(d$samples$type) & "control" %in% unique(d$samples$type)){
+  } else if (length(unique(d$samples$type))!=1 & unique(c("case","control") %in% d$samples$type)=="TRUE"){
     d$control.names=d$samples$id[d$samples$type=="control"]
-  } else {
-      stop("Only 'case' or 'control' should be included in the configuration file under the column 'type'\n.Cases can be run alone or with controls", call.=FALSE)
   }
 
-  idx_cosmic=which(!is.na(d$annotated.panel$cosmic)) #There are only two statuses. Reported or not-available
-  idx_maf=which(d$annotated.panel$maf>opt$maf) #The cut-off for inclusion of polymorphism is defined by the user.
+  #The cut-off for inclusion of Polymorphism based on their minor allele frequency can be defined by the user.
+  #For the cosmic mutations there are only two statuses. Reported or not available
+  idx_cosmic=which(!is.na(d$annotated.panel$cosmic))
+  idx_maf=which(d$annotated.panel$maf>opt$maf)
   idx=unique(idx_cosmic,idx_maf)
 
-  # to reduce the chance that cosmic mutation will be missed from being called in cases, it looks at their error rates in the control samples and use the median allele frequency.
+  # to reduce the chance that cosmic mutation will be missed it looks at all the error rates in the cosmic positions in the control samples and use the median allele frequency at every allele.
   # if there is only a single control sample it will use the median across all the cosmic alleles (and the SNPs) in the control sample. VAF cut-off will be applied based on the user input
   control.names=d$control.names
   if(length(idx)>0){
-    d$control.allele.frequency.plus = copy(d$allele.frequency.plus[,..control.names])
     #plus
     if(length(control.names)>1){
+      d$control.allele.frequency.plus = copy(d$allele.frequency.plus[,..control.names])
       l=mclapply(1:length(idx), mc.cores = opt$threads, mc.cleanup=T, mc.silent=F ,function(i) {
         a=unlist(d$control.allele.frequency.plus[idx[i]])
         idx1=as.numeric(which(a!=0 & a<opt$vaf))
@@ -845,18 +844,20 @@ prior.knowledge = function(d){
       })
       set(d$control.allele.frequency.plus,idx,names(d$control.allele.frequency.plus),rbindlist(l))
     } else { #only one control sample
-      a=unlist(d$control.allele.frequency.plus[idx])
+      d$control.allele.frequency.plus = copy(d$allele.frequency.plus[,..control.names])
+      a=d$control.allele.frequency.plus[idx]
       idx1=as.numeric(which(a!=0 & a<opt$vaf))
       if(length(idx1)>0){
-        m=median(a[idx1]) #median
-        d$control.allele.frequency.plus[idx]= m
+        m=median(as.numeric(unlist(a[idx1]))) #median
+      } else if (length(idx1)==0) {
+        m=length(d$total.depth.plus[idx,..control.names])/sum(d$total.depth.plus[idx,..control.names]) #equal to 1 read per sample with non-reference allele
       }
+      set(d$control.allele.frequency.plus, i = idx, j = as.integer(1), m)
     }
 
     #minus
-    d$control.allele.frequency.minus = copy(d$allele.frequency.minus[,..control.names])
-
     if(length(control.names)>1){
+      d$control.allele.frequency.minus = copy(d$allele.frequency.minus[,..control.names])
       l=mclapply(1:length(idx), mc.cores = opt$threads, mc.cleanup=T, mc.silent=F ,function(i) {
         a=unlist(d$control.allele.frequency.minus[idx[i]])
         idx1=as.numeric(which(a!=0 & a<opt$vaf))
@@ -876,12 +877,15 @@ prior.knowledge = function(d){
       })
       set(d$control.allele.frequency.minus,idx,names(d$control.allele.frequency.minus),rbindlist(l))
     } else { #only one control sample
-      a=unlist(d$control.allele.frequency.minus[idx])
+      d$control.allele.frequency.minus = copy(d$allele.frequency.minus[,..control.names])
+      a=d$control.allele.frequency.minus[idx]
       idx1=as.numeric(which(a!=0 & a<opt$vaf))
       if(length(idx1)>0){
-        m=median(a[idx1]) #median
-        d$control.allele.frequency.minus[idx]=m
+        m=median(as.numeric(unlist(a[idx1]))) #median
+      } else if (length(idx1)==0) {
+        m=length(d$total.depth.minus[idx,..control.names])/sum(d$total.depth.minus[idx,..control.names]) #equal to 1 read per sample with non-reference allele
       }
+      set(d$control.allele.frequency.minus, i = idx, j = as.integer(1), m)
     }
   }
   cat(" DONE!\n")
