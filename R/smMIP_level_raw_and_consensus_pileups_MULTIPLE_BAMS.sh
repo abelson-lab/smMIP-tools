@@ -20,7 +20,8 @@ TARGET=/.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt  #CH
 OUT=/.mounts/example_github/Example/pileup/ #CHANGE HERE
 
 #Enter the path for temporary files. PLEASE NOTE, this is optional parameter yet, When working on HPC, supplying a local folder to write and read temporary files can increase speed
-TMP=/tmp/SmMIP_tools #CHANGE HERE. Also, delete "-O" below if not being used
+rand=$(echo $RANDOM | md5sum | head -c 20; echo;)
+TMP=/tmp/SmMIP_tools_$rand #CHANGE HERE. Also, delete "-O" below if not being used
 
 #Enter The number of cores to use for parallel processing
 Cores=20 #CHANGE HERE. Also, delete -t below if not being used (can take long if not being used)
