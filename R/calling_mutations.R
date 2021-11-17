@@ -67,11 +67,11 @@ data=prior.knowledge(data)
 
 ################  CALCULATE P-VALUES
 data=pval.calculation(data)
-l=length(which(is.na(data$pval.minus) & is.na(data$pval.plus)))
-data$pval.minus[is.na(data$pval.minus)]=1
-data$pval.plus[is.na(data$pval.plus)]=1
+tab=as.data.frame(which(is.na(data$pval.minus) & is.na(data$pval.plus),arr.ind = T))
+l=nrow(tab)
 if(length(l)>0 & l!=0 ){
-  print(paste0(l," alleles were not modeled. Insufficient data to accurately estimate the error rates"))
+  print(paste0("Working on the last ", l," alleles"))
+  data=pval.calculation.remained(data)
 }
 
 ########## P-VALUE CORRECTIONS
