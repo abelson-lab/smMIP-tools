@@ -965,6 +965,58 @@ pval.calculation = function(d){
   cat("\n")
   d
 }
+				
+pval.calculation.remained <- function(d){
+  control.names=d$control.names
+  d$control.total.depth.plus=copy(d$total.depth.plus[,..control.names])
+  d$control.total.depth.minus=copy(d$total.depth.minus[,..control.names])
+  d$control.non.ref.counts.plus=copy(d$control.allele.frequency.plus*d$total.depth.plus[,..control.names])
+  d$control.non.ref.counts.minus=copy(d$control.allele.frequency.minus*d$total.depth.minus[,..control.names])
+  case.names=d$samples$id[d$samples$type=="case"]
+  for(i in 1:nrow(tab)){
+    idx=grep(d$annotated.panel[tab[i,1]]$smMIP,d$annotated.panel$smMIP)
+
+    n=case.names[tab[i,2]]
+    if(!is.na(d$samples$replicate[d$samples$id==n])){ #If there are technical replicates in the experiment for that sample it removes the other replicate from the controls
+      control.names=d$samples$id[-which(d$samples$replicate==d$samples$replicate[d$samples$id==n])]
+    } else { #no replicates
+      control.names=d$samples$id[d$samples$id!=n]
+    }
+
+    #plus
+    bp=min(unlist(lapply(1:length(control.names), function(y)
+      {x=unlist(d$total.depth.plus[idx,..y])
+      suppressWarnings(min(x[x!=0]))
+      })))
+
+    if(bp!=Inf){
+      ap=1
+      v=ap/bp
+      d$pval.plus[[n]][tab[i,1]]=suppressWarnings(pbinom(d$non.ref.counts.plus[[n]][tab[i,1]], size=d$total.depth.plus[[n]][tab[i,1]], prob=v,lower.tail = F))
+      if(d$non.ref.counts.plus[[n]][tab[i,1]]==0){d$pval.plus[[n]][tab[i,1]]=1} # the p-value will be changed to 1 when there are no supporting reads
+    }
+
+    #minus
+    bp=min(unlist(lapply(1:length(control.names), function(y)
+    {x=unlist(d$total.depth.minus[idx,..y])
+    suppressWarnings(min(x[x!=0]))
+    })))
+    #bp=suppressWarnings(min(bp[bp!=0]))
+    if(bp!=Inf){
+      ap=1
+      v=ap/bp
+      d$pval.minus[[n]][tab[i,1]]=suppressWarnings(pbinom(d$non.ref.counts.minus[[n]][tab[i,1]], size=d$total.depth.minus[[n]][tab[i,1]], prob=v,lower.tail = F))
+      if(d$non.ref.counts.minus[[n]][tab[i,1]]==0){d$pval.minus[[n]][tab[i,1]]=1} # the p-value will be changed to 1 when there are no supporting reads
+    }
+
+    if(round(i/nrow(tab),2) %in% seq(0.01,0.99,0.01)){
+      system(paste0("printf '\\rEstimating background error levels and calculating P-values :  ",round(100*i/nrow(tab)),"%%     '"))
+    } else if (i==nrow(tab)){
+      system(paste0("printf '\\rEstimating background error levels and calculating P-values :  100%%     '"))
+    }
+  }
+  d
+}				
 
 pval.correction.cdna.strand = function(d){
   system(paste0("printf '\\rAjusting P-values to account for the plus and minus replicated DNA strands...'"))
