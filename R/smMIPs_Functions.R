@@ -1114,11 +1114,11 @@ pval.passed.mutations = function(d){
   for(i in idx1){
     idx2=which(d$annotated.panel$pos==d$calls$pos[i] & d$annotated.panel$alt==d$calls$alt[i] & d$annotated.panel$smMIP==d$calls$smMIP[i])
     n=d$calls$sample_ID[i]
-    if(d$pval.minus[idx2,..n]>opt$pval){
+    if(d$pval.minus[idx2,..n]=="NaN" | d$pval.minus[idx2,..n]>opt$pval){
       d$calls$non.ref.counts.minus[i]=NA
       d$calls$total.depth.minus[i]=NA
     }
-    if(d$pval.plus[idx2,..n]>opt$pval){
+    if(d$pval.plus[idx2,..n]=="NaN" | d$pval.plus[idx2,..n]>opt$pval){
       d$calls$non.ref.counts.plus[i]=NA
       d$calls$total.depth.plus[i]=NA
     }
