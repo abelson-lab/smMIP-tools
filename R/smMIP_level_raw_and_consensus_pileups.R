@@ -107,7 +107,7 @@ data$panel$target_seq[which(data$panel$probe_strand=="-")]=reverse(chartr("ATGC"
 
 tmp1=data.table("smMIP"=rep(data$panel$id,unlist(lapply(strsplit(data$panel$target_seq,""),function(x) length(x)))),
                 "chr"=rep(data$panel$chr,unlist(lapply(strsplit(data$panel$target_seq,""),function(x) length(x)))),
-                "pos"=unlist(apply(cbind(data$panel$target_start,data$panel$target_stop),1,function(x) seq(x[1],x[2],1))), #we are not interested to call mutations from the smMIPs arms
+                "pos"=unlist(as.list(apply(cbind(data$panel$target_start,data$panel$target_stop),1,function(x) seq(x[1],x[2],1)))), #we are not interested to call mutations from the smMIPs arms
                 "ref"=unlist(strsplit(data$panel$target_seq, "")))
 
 ################ SMMIP-LEVEL RAW PILEUP 
