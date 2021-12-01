@@ -975,40 +975,40 @@ pval.calculation.remained <- function(d){
   case.names=d$samples$id[d$samples$type=="case"]
   for(i in 1:nrow(tab)){
     idx=grep(d$annotated.panel[tab[i,1]]$smMIP,d$annotated.panel$smMIP)
-
+    
     n=case.names[tab[i,2]]
     if(!is.na(d$samples$replicate[d$samples$id==n])){ #If there are technical replicates in the experiment for that sample it removes the other replicate from the controls
       control.names=d$samples$id[-which(d$samples$replicate==d$samples$replicate[d$samples$id==n])]
     } else { #no replicates
       control.names=d$samples$id[d$samples$id!=n]
     }
-
+    
     #plus
     bp=min(unlist(lapply(1:length(control.names), function(y)
-      {x=unlist(d$total.depth.plus[idx,..y])
-      suppressWarnings(min(x[x!=0]))
-      })))
-
+    {x=unlist(d$total.depth.plus[idx,..y])
+    suppressWarnings(quantile(x[x!=0]))[2]
+    })),na.rm = T)
+    
     if(bp!=Inf){
       ap=1
       v=ap/bp
       d$pval.plus[[n]][tab[i,1]]=suppressWarnings(pbinom(d$non.ref.counts.plus[[n]][tab[i,1]], size=d$total.depth.plus[[n]][tab[i,1]], prob=v,lower.tail = F))
       if(d$non.ref.counts.plus[[n]][tab[i,1]]==0){d$pval.plus[[n]][tab[i,1]]=1} # the p-value will be changed to 1 when there are no supporting reads
     }
-
+    
     #minus
     bp=min(unlist(lapply(1:length(control.names), function(y)
     {x=unlist(d$total.depth.minus[idx,..y])
-    suppressWarnings(min(x[x!=0]))
-    })))
-    #bp=suppressWarnings(min(bp[bp!=0]))
+    suppressWarnings(quantile(x[x!=0]))[2]
+    })),na.rm = T)
+    
     if(bp!=Inf){
       ap=1
       v=ap/bp
       d$pval.minus[[n]][tab[i,1]]=suppressWarnings(pbinom(d$non.ref.counts.minus[[n]][tab[i,1]], size=d$total.depth.minus[[n]][tab[i,1]], prob=v,lower.tail = F))
       if(d$non.ref.counts.minus[[n]][tab[i,1]]==0){d$pval.minus[[n]][tab[i,1]]=1} # the p-value will be changed to 1 when there are no supporting reads
     }
-
+    
     if(round(i/nrow(tab),2) %in% seq(0.01,0.99,0.01)){
       system(paste0("printf '\\rEstimating background error levels and calculating P-values :  ",round(100*i/nrow(tab)),"%%     '"))
     } else if (i==nrow(tab)){
@@ -1071,8 +1071,6 @@ pval.correction.overlapping.smmips = function(d){
   cat(" DONE!\n")
   d
 }
-
-
 
 pval.correction.technical.replicates = function(d){
   system(paste0("printf '\\rAjusting P-values to account for technical replicates...'"))
@@ -1313,27 +1311,27 @@ vaf.calculation.technical.replicates = function(d){
   d
 }
 
-adding.batch.info2 = function(d){
+adding.batch.info2 <- function(d){
   #Writing zero counts for indels where the P-values did not pass as we allowed indels to be called without validation on the other cDNA strand and we need to preserve the correct VAF
   idx1=grep("-|[+]",d$annotated.panel$alt)
-
+  
   idx2=which(d$pval.minus[idx1]>opt$pval,arr.ind = T)
   idx2[,1]=idx1[idx2[,1]]
   non.ref.counts.minus=d$non.ref.counts.minus
   non.ref.counts.minus[idx2]=0
   total.depth.minus=d$total.depth.minus
   total.depth.minus[idx2]=0
-
+  
   idx2=which(d$pval.plus[idx1]>opt$pval,arr.ind = T)
   idx2[,1]=idx1[idx2[,1]]
   non.ref.counts.plus=d$non.ref.counts.plus
   non.ref.counts.plus[idx2]=0
   total.depth.plus=d$total.depth.plus
   total.depth.plus[idx2]=0
-
+  
   d$non.ref.counts=non.ref.counts.minus+non.ref.counts.plus
   d$total.depth=total.depth.minus+total.depth.plus
-
+  
   #minimizing the data.tables to those alleles that were called
   rn=paste(d$annotated.panel$chr,d$annotated.panel$pos,d$annotated.panel$ref,d$annotated.panel$alt)
   rn=gsub("[+]","[+]",rn)
@@ -1355,30 +1353,32 @@ adding.batch.info2 = function(d){
     n2=n1
     n1=n1[seq(1,length(n1),2)]+1
     n2=n2[seq(2,length(n2),2)]+1
-
+    
     x1=d$non.ref.counts[,..n1]
     x2=d$non.ref.counts[,..n2]
     d$non.ref.counts=x1+x2
     row.names(d$non.ref.counts)=d$total.depth$by
     names(d$non.ref.counts)=paste(names(x1),names(x2),sep=",")
-
+    
     x1=d$total.depth[,..n1]
     x2=d$total.depth[,..n2]
     d$total.depth=x1+x2
   } else {
-	d$non.ref.counts[,by:=NULL]
-        row.names(d$non.ref.counts)=d$total.depth$by
-        d$total.depth[,by:=NULL]
+    d$non.ref.counts[,by:=NULL]
+    row.names(d$non.ref.counts)=d$total.depth$by
+    d$total.depth[,by:=NULL]
   }
-
+  
   d$allele.frequency=d$non.ref.counts/d$total.depth
   row.names(d$allele.frequency)=row.names(d$non.ref.counts)
   names(d$allele.frequency)=names(d$non.ref.counts)
-
+  
   idx1=match(mn,row.names(d$allele.frequency))
   m=unlist(mclapply(1:nrow(d$calls) ,mc.cores = opt$threads, mc.cleanup=T, mc.silent=F ,function(i){
     idx2=which(d$allele.frequency[idx1[i]] > d$calls$allele.frequency[i])
+    idx2=idx2[!(names(d$allele.frequency)[idx2] %in% d$calls$sample_ID[i])]
     idx3=which(d$allele.frequency[idx1[i]] < d$calls$allele.frequency[i])
+    idx3=idx3[!(names(d$allele.frequency)[idx3] %in% d$calls$sample_ID[i])]
     x1=length(idx2)
     if(x1>0){
       x2=d$allele.frequency[idx1[i],..idx2]
@@ -1394,7 +1394,7 @@ adding.batch.info2 = function(d){
       x3=x3[1:3]
       x3=paste(x3[!is.na(x3)],collapse=",")
     } else {x3=NA}
-
+    
     if(round(i/nrow(d$calls),1) %in% seq(0.1,0.9,0.1)) {
       system(paste0("printf '\\rWriting batch related information (part2) :  ",round(100*i/nrow(d$calls)),"%%     '"))
     } else if (i==nrow(d$calls)){
