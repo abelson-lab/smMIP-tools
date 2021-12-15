@@ -696,7 +696,7 @@ ___
 ___
 **SSCS.allele.frequency** : Variant allele frequency calculated from concensus read support
 ___
-**SSCS.overlap** : This column indicates the % of UMIs that are present in reads with the same variant in other samples 
+**SSCS.overlap** : This column indicates how many of the reads describing the reported variant were also found in other samples in the cohort. Reads are matched based on the variant that they report, their UMI and the smMIP used to generate them.  
 ___
 **SSCS.overlap** : Flags to filter and prioritize mutations calls
 ___
