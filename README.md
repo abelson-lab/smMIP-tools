@@ -698,7 +698,7 @@ ___
 ___
 **SSCS.overlap** : This column indicates how many of the reads describing the reported variant were also found in other samples in the cohort. Reads are matched based on the variant that they report, their UMI and the smMIP used to generate them.  
 ___
-**SSCS.overlap** : Flags to filter and prioritize mutations calls
+**flags** : Flags to filter and prioritize mutations calls
 ___
 
 
