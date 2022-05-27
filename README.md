@@ -544,8 +544,8 @@ you can also use the bash code below to generate a configuration file that will 
 2) There are only cases and no controls
 3) The code is excuted from the folder that contain the base summary files (pileup)
 
-```echo -e "id\ttype\treplicate" > configuration.txt; i=0 ; a=0;  for f in \*raw\*; do let a++; if (( $a % 2 ));then let i++; fi;  n=${f%_raw*}; echo -e "$n\tcase\t$i" >> configuration.txt; done  
-```
+"echo -e "id\ttype\treplicate" > configuration.txt; i=0 ; a=0;  for f in \*raw\*; do let a++; if (( $a % 2 ));then let i++; fi;  n=${f%_raw*}; echo -e "$n\tcase\t$i" >> configuration.txt; done"
+
 If sequencing for samples was done in duplicates and one of the replicates for a particular sample/s failed, you should still include it in the configuration file.
 smMIP-tools will recognize that the file is missing and will create an empty pileup. This is necessary to flag mutations properly.
 
