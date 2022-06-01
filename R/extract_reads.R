@@ -7,12 +7,11 @@ library("optparse")
 #define parameters
 option_list = list(
   make_option(c("-f", "--file"), type="character", default=NULL,help="Path to the bam or sam file", metavar="character"),
-  make_option(c("-p", "--position"), type="character", default=NULL,help="Chromosom and genomic positions, e.g, chr13:28608217-28608354", metavar="character"),
-  make_option(c("-i", "--identifier"), type="character", default=NULL,help="Any character that can identify reads. e.g., accepted identifiers are chromosomes, full or partial CIGAR strings, full or partial read names and read sequences. Multiple features can be input in the following format: chr15,8M1D143M,AAGAGATGG. Comma corresponds to AND operator and vertical bar '|' to OR operator. Read help (Rscript extract_reads.R) to learn how to use this option properly", metavar="character"),
+  make_option(c("-p", "--position"), type="character", default=NA,help="Chromosom and genomic positions, e.g, chr13:28608217-28608354", metavar="character"),
+  make_option(c("-i", "--identifier"), type="character", default=NA,help="Any character that can identify reads. e.g., accepted identifiers are chromosomes, full or partial CIGAR strings, full or partial read names and read sequences. Multiple features can be input in the following format: chr15,8M1D143M,AAGAGATGG. Comma corresponds to AND operator and vertical bar '|' to OR operator. Read help (Rscript extract_reads.R) to learn how to use this option properly", metavar="character"),
   make_option(c("-m", "--multiple"), type="character", default=NULL,help="Path to a file describing the location of multiple bam/sam files position and pattern", metavar="character"),
   make_option(c("-s", "--split"), type="character", default="y",help="Options are 'y' or 'n'.One file per sample or not when -m is used", metavar="character"),
   make_option(c("-o", "--output"), type="character", default=NULL,help="Path for output sam [MENDATORY]", metavar="character"))
-
 
 #takes user input parameters
 opt_parser = OptionParser(option_list=option_list)
@@ -37,7 +36,6 @@ if (h==1) {
        Example to run based on option2: Rscript extract_reads.R -d path_to_file_with_multiple_queries -o output_path
        ", call.=FALSE)
 }
-
 
 
 ################ LOAD LIBRARIES
@@ -90,6 +88,10 @@ for(i in 1:nrow(opt$multiple)){
   dts[[i]]$qname=paste0(dts[[i]]$qname,"|",basename(opt$multiple$file_path[i]))
 }	    
 
+if(is.na(opt$multiple$position[i]) & is.na(opt$multiple$pattern[i])){ 
+  print("No genomic locations or patterns to search were input.",quote = F)
+  }
+
 ################ Merging all the reads and write the sam
 if(opt$split=="n"){
  dt=unique(rbindlist(dts))
@@ -109,6 +111,7 @@ if(opt$split=="n"){
      if(length(idx)>0){dts[[i]]=dts[[i]][-idx]}   
      n=basename(opt$multiple$file_path[i])
      n=paste0(gsub(".bam","",n),"_",opt$multiple$position[i],"_",opt$multiple$pattern[i])
+     n=gsub("_NA","",n)
      if(nrow(dts[[i]])!=0){
        u=unique(dts[[i]]$rname)
        header=as.data.frame(matrix(nrow = length(u)+2,ncol=11))
