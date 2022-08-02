@@ -728,7 +728,7 @@ load.annotation.file=function(d){
   # adding indels as alternative alleles at the end of the file since they are not included in the annotated file
   idx1=match(unique(paste(d$annotated.panel$smMIP,d$annotated.panel$chr,d$annotated.panel$pos,d$annotated.panel$ref)),paste(d$annotated.panel$smMIP,d$annotated.panel$chr,d$annotated.panel$pos,d$annotated.panel$ref))
   a1=d$annotated.panel[idx1]
-  a1[a1$variant_type %in% c("missense_variant","stop_gained","synonymous_variant","start_lost","stop_lost","stop_retained_variant"), variant_type:=NA ]
+  a1[a1$variant_type %in% c("missense_variant","stop_gained","synonymous_variant","start_lost","stop_lost","stop_retained_variant","synonymous SNV","stoploss","stopgain","startloss","nonsynonymous SNV"), variant_type:=NA ]
   a1[,c("alt","cosmic","maf","protein","cadd_scaled"):=list("+",NA,NA,NA,NA)]
   a2=copy(a1)
   a2[,alt:="-"]
