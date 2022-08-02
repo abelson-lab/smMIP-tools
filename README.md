@@ -411,6 +411,7 @@ chr9	5073828	+	G	2	318	0.00628930817610063	JAK2_001	TTTA_GTAC,GTTT_AATA	1,1	1,1
   ```
 
 ## smMIP Target Panel Annotation
+### OPTION 1 : CellBaseR dependency
 ### Description
 Annotate_SNVs.R can take two types of files as an input: 1) A [smMIP-design file](https://github.com/BioSoft/smMIP-tools/blob/main/Example/supplemental_files/Target_MIPgen.txt) or 2) a tab delimited file with the columns "chr", "pos", "ref", "alt" . The code uses the  "cellbaseR" package to summarize gene ID, amino acid changes, Cosmic, Minor allele Frequency (MAF), Variant type (synonymous, missense, etc..) and deleteriousness (CADD score) annotations. If the input is a smMIP-design file, all the possible SNVs that might be detected using each smMIP in your target smMIP panel will be annotated. 
 
@@ -531,6 +532,9 @@ JAK2_001	chr9	5073738	A	A	JAK2	ENST00000539801:H606H; ENST00000381652:H606H; ENS
 JAK2_001	chr9	5073739	C	A	JAK2	ENST00000539801:H606Q; ENST00000381652:H606Q; ENST00000544510:H457Q	COSM29116,haematopoietic and lymphoid tissue	0.000144591296666667	missense_variant	26.8999996185303
 JAK2_001	chr9	5073740	A	A	JAK2	ENST00000539801:K607K; ENST00000381652:K607K; ENST00000544510:K458K	NA	NA	synonymous_variant	0
   ```
+  
+### OPTION 2 : ANNOVAR dependency  
+  
   
 ## Calling Mutations 
 ### Description
