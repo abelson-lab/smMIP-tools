@@ -552,7 +552,7 @@ table_annovar.pl input_for_annovar_Target_MIPgen.txt [FOLDER THAT YOU USED TO DO
 f) Run annovar_output_to_Annotate_SNVs.R as the following example:  
 Rscript annovar_output_to_Annotate_SNVs.R -i /.mounts/example_github/Example/supplemental_files/annovar_annotated_Target_MIPgen.txt.hg19_multianno.txt  
 
-*The output files from this example can be found in the supplemental_files folder of this repository:  
+*The output files from this example can be found in the supplemental_files folder of this repository.     
 
 ## Calling Mutations 
 ### Description
