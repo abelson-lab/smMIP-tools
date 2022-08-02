@@ -544,7 +544,7 @@ b) Download CosmicMutantExport.tsv and CosmicCodingMuts.vcf.gz directly from COS
 
 ### Running the code
 c) Use ANNOVAR prepare_annovar_user.pl (downloaded seperately, see ANNOVAR website for additional documentation) to prepare the COSMIC file.  
-for example: prepare_annovar_user.pl -dbtype cosmic CosmicMutantExport.tsv -vcf CosmicCodingMuts.vcf > hg19_cosmic96_coding.txt. 
+for example: prepare_annovar_user.pl -dbtype cosmic CosmicMutantExport.tsv -vcf CosmicCodingMuts.vcf > hg19_cosmic96_coding.txt    
 d) Run smMIP_design_file_to_annovar_input.R as the following example:  
 Rscript smMIP_design_file_to_annovar_input.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -o /.mounts/example_github/Example/supplemental_files/  
 e) Run ANNOVAR as the following example:  
