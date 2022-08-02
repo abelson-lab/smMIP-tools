@@ -543,13 +543,13 @@ b) Download CosmicMutantExport.tsv and CosmicCodingMuts.vcf.gz directly from COS
 *Both ANNOVAR and COSMIC require short registration.  
 
 ### Running the code
-c) Use ANNOVAR prepare_annovar_user.pl (donwloaded seperately, ANNOVAR website for additional documentation) to prepare the COSMIC file
+c) Use ANNOVAR prepare_annovar_user.pl (downloaded seperately, see ANNOVAR website for additional documentation) to prepare the COSMIC file.  
 for example: prepare_annovar_user.pl -dbtype cosmic CosmicMutantExport.tsv -vcf CosmicCodingMuts.vcf > hg19_cosmic96_coding.txt. 
-d) Run smMIP_design_file_to_annovar_input.R as the following example:
-Rscript smMIP_design_file_to_annovar_input.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -o /.mounts/example_github/Example/supplemental_files/. 
-e) Run ANNOVAR as the following example:
-table_annovar.pl input_for_annovar_Target_MIPgen.txt [FOLDER THAT YOU USED TO DOWNLOAD THE MENTIONED DATASETS] -buildver hg19 -out annovar_annotated_Target_MIPgen.txt  -protocol refGene,cosmic96_coding,gnomad_genome,cadd13 -operation g,f,f,f -nastring NA --remove --otherinfo. 
-f) Run annovar_output_to_Annotate_SNVs.R as the following example:
+d) Run smMIP_design_file_to_annovar_input.R as the following example:  
+Rscript smMIP_design_file_to_annovar_input.R -p /.mounts/example_github/Example/supplemental_files/Target_MIPgen.txt -o /.mounts/example_github/Example/supplemental_files/  
+e) Run ANNOVAR as the following example:  
+table_annovar.pl input_for_annovar_Target_MIPgen.txt [FOLDER THAT YOU USED TO DOWNLOAD THE MENTIONED DATASETS] -buildver hg19 -out annovar_annotated_Target_MIPgen.txt  -protocol refGene,cosmic96_coding,gnomad_genome,cadd13 -operation g,f,f,f -nastring NA --remove --otherinfo     
+f) Run annovar_output_to_Annotate_SNVs.R as the following example:  
 Rscript annovar_output_to_Annotate_SNVs.R -i /.mounts/example_github/Example/supplemental_files/annovar_annotated_Target_MIPgen.txt.hg19_multianno.txt  
 
 *The output files from this example can be found in the supplemental_files folder of this repository:  
