@@ -726,10 +726,10 @@ ___
 ___
 
 
-### Contact
+## Contact
 We appreciate any feedback, so please do not hesitate to open an issue in smMIP-tools GitHub page and/or 
 email: sagi.abelson@gmail.com
 
-### Citing smMIP-tools
+## Citing smMIP-tools
 Jessie J F Medeiros, Jose-Mario Capo-Chichi, Liran I Shlush, John E Dick, Andrea Arruda, Mark D Minden, Sagi Abelson, SmMIP-tools: a computational toolset for processing and analysis of single-molecule molecular inversion probes-derived data, *Bioinformatics*, Volume 38, Issue 8, 15 April 2022, Pages 2088–2095, https://doi.org/10.1093/bioinformatics/btac081
 
