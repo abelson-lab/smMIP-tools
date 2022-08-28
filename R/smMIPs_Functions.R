@@ -470,14 +470,8 @@ adjust_readname<-function(d){
   names(umi.2)<-names(smmips.2)<-d$samtable[R1.index,]$qname
 
   umi.12<-paste0(umi.1[qnames],"_",umi.2[qnames])
-  if(unique(unique(d$samtable[R1.index,]$umi)=="") &  unique(unique(d$samtable[R2.index,]$umi)=="")) {
-    umi.12<-""
-  } else if (unique(unique(d$samtable[R2.index,]$umi)=="")) {
-    #umi.12<-paste0(umi.1[qnames],flag.1[qnames])
-    umi.12<-umi.1[qnames]
-  } else if (unique(unique(d$samtable[R1.index,]$umi)=="")) {
-    umi.12<-umi.2[qnames]
-  }
+  umi.12<-gsub("^_","",umi.12)
+  umi.12<-gsub("_$","",umi.12)
 
   # check to make sure the smmips are identical
   if(length(which(smmips.1[qnames]!=smmips.2[qnames]))!=0){
