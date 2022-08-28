@@ -146,6 +146,7 @@ if(opt$filtered.reads=="y"){ #
   header[,2]=c(paste0("SN:",u),paste0("ID:",opt$sample.name),"ID:bwa")
   header[1:length(u),3]=rep("LN:1",length(u))
   l=as.data.frame(data$filtered[order(data$filtered$rname,data$filtered$pos),])
+  l[] <- lapply(l, as.character)
   l[which(is.na(l),arr.ind = T)]=0
   write.table(rbind(header,l),file=paste0(opt$output,"/",opt$sample.name,"/",opt$sample.name,"_filtered.sam"),col.names = F,row.names = F,quote = F,sep = '\t')
 } else if (opt$filtered.reads=="n"){
