@@ -33,7 +33,7 @@ if (h==1) {
        If you would like to extract reads from multiple samples provide your query as a tab delimited text file. Columns 1-3 shown be named 'file_path' 'position' 'pattern'.
        Write NA in case you want to search read based on position or pattern alone. Please notice that searching reads based on pattern alone might take long.  
        Example to run based on option1: Rscript extract_reads.R -f path_to_file -p chr13:28608217-28608354 -i '[0-9]D|[0-9]I' -o output_path
-       Example to run based on option2: Rscript extract_reads.R -d path_to_file_with_multiple_queries -o output_path
+       Example to run based on option2: Rscript extract_reads.R -m path_to_file_with_multiple_queries -o output_path
        ", call.=FALSE)
 }
 
