@@ -716,8 +716,8 @@ variant_annotation_using_cellbaseR<- function(i){
 
 load.annotation.file=function(d){
   d$annotated.panel=fread(opt$alleles,header=T,sep="\t",showProgress = FALSE)
-  if(length(grep("chr",d$annotated.panel))==0){
-    d$annotated.panel$chr=paste0("chr",d$annotated.panel)
+  if(length(grep("chr",d$annotated.panel$chr))==0){
+    d$annotated.panel$chr=paste0("chr",d$annotated.panel$chr)
   }
   # adding indels as alternative alleles at the end of the file since they are not included in the annotated file
   idx1=match(unique(paste(d$annotated.panel$smMIP,d$annotated.panel$chr,d$annotated.panel$pos,d$annotated.panel$ref)),paste(d$annotated.panel$smMIP,d$annotated.panel$chr,d$annotated.panel$pos,d$annotated.panel$ref))
