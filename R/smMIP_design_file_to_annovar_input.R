@@ -45,8 +45,8 @@ panel<-load.panel(opt$panel.file)
 panel$target_seq[which(panel$probe_strand=="-")]=reverse(chartr("ATGC","TACG",panel$target_seq[which(panel$probe_strand=="-")])) #determine the reference alleles on the positive strand
 
 tmp1=data.table("chr"=rep(panel$chr,unlist(lapply(strsplit(panel$target_seq,""),function(x) length(x)))),
-                  "pos1"=unlist(apply(cbind(panel$target_start,panel$target_stop),1,function(x) seq(x[1],x[2],1))), #we are not interested to call mutations from the smMIPs arms
-                  "pos2"=unlist(apply(cbind(panel$target_start,panel$target_stop),1,function(x) seq(x[1],x[2],1))),
+                  "pos1"=unlist(as.data.frame(apply(cbind(panel$target_start,panel$target_stop),1,function(x) seq(x[1],x[2],1)))), #we are not interested to call mutations from the smMIPs arms
+                  "pos2"=unlist(as.data.frame(apply(cbind(panel$target_start,panel$target_stop),1,function(x) seq(x[1],x[2],1)))),
                   "ref"=unlist(strsplit(panel$target_seq, "")),
                   "alt"="A",
                   "smMIP"=rep(panel$id,unlist(lapply(strsplit(panel$target_seq,""),function(x) length(x)))))
