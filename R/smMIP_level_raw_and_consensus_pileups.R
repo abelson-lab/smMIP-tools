@@ -60,7 +60,7 @@ if (opt$consensus.cutoff<0.51){
 ################  LOAD LIBRARIES
 library("Rsamtools")
 library("data.table")
-
+library("parallel")
 
 #Print all the parameters
 cat("###############################\n")
