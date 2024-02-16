@@ -561,7 +561,14 @@ load_qc_filtered.reads <- function(){
 ########################################################################################
 
 pileup_foreach_smmip <- function(i){
-  write.table(rbind(header,smmip_piles[[i]][,c("qname","flag","rname","pos","mapq","cigar","mrnm","mpos","isize","seq","qual")]),file=paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp.sam"),col.names = F,row.names = F,quote = F,sep = '\t')
+  sequence_file_path <- paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp.sam")
+  write.table(as.data.frame(smmip_piles[[i]][,c("qname","flag","rname","pos","mapq","cigar","mrnm","mpos","isize","seq","qual")]), file = sequence_file_path, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+
+  final_file_path <- sequence_file_path
+  header_content <- readLines(header_file_path)
+  sequence_content <- readLines(sequence_file_path)
+  writeLines(c(header_content, sequence_content), final_file_path)
+	
   suppressWarnings(asBam(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp.sam"),paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp"),overwrite=T))
   invisible(file.remove(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp.sam")))
   bf <- open(BamFile(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_piles)[i],"_tmp.bam")))
@@ -593,7 +600,15 @@ pileup_foreach_smmip <- function(i){
 
 
 pileup_foreach_smmip.umi <- function(i){
-  write.table(rbind(header,smmip_umi_piles[[i]][,c("qname","flag","rname","pos","mapq","cigar","mrnm","mpos","isize","seq","qual")]),file=paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp.sam"),col.names = F,row.names = F,quote = F,sep = '\t')
+  header_file_path <- paste0(opt$tmp.output,"/",opt$sample.name,".header")
+  sequence_file_path <- paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp.sam")
+  write.table(as.data.frame(smmip_umi_piles[[i]][,c("qname","flag","rname","pos","mapq","cigar","mrnm","mpos","isize","seq","qual")]), file = sequence_file_path, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+
+  final_file_path <- sequence_file_path
+  header_content <- readLines(header_file_path)
+  sequence_content <- readLines(sequence_file_path)
+  writeLines(c(header_content, sequence_content), final_file_path)
+
   suppressWarnings(asBam(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp.sam"),paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp"),overwrite=T))
   invisible(file.remove(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp.sam")))
   bf <- open(BamFile(paste0(opt$tmp.output,"/",opt$sample.name,"_",names(smmip_umi_piles)[i],"_tmp.bam")))
