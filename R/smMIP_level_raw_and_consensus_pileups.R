@@ -95,12 +95,14 @@ p_param <- PileupParam(max_depth=10000000,
 
 ################ CREATING HEADER
 u=unique(data$samtable$rname)
-header=as.data.frame(matrix(nrow = length(u)+2,ncol=11))
-header[1:(length(u)+2),]=""
-colnames(header)=c("qname","flag","rname","pos","mapq","cigar","mrnm","mpos","isize","seq","qual")
-header[,1]=c(rep("@SQ",length(u)),"@RG","@PG")
-header[,2]=c(paste0("SN:",u),paste0("ID:",opt$sample.name),"ID:bwa")
+header=as.data.frame(matrix(nrow = length(u)+1,ncol=3))
+header[,1]=c(rep("@SQ",length(u)),"@RG")
+header[,2]=c(paste0("SN:",u),paste0("ID:",opt$sample.name))
 header[1:length(u),3]=rep("LN:1",length(u))
+header[length(u)+1,3]=paste0("SM:",opt$sample.name)
+
+header_file_path <- paste0(opt$tmp.output,"/",opt$sample.name,".header")
+write.table(header, file = header_file_path, sep = "\t", quote = FALSE, row.names = FALSE, col.names=FALSE)
 
 ############### TO FILTER THE PILEUPS SO THEY WILL NOT INCLUDE THE REFERENCE ALLELES
 data$panel$target_seq[which(data$panel$probe_strand=="-")]=reverse(chartr("ATGC","TACG",data$panel$target_seq[which(data$panel$probe_strand=="-")])) #determine the reference alleles on the positive strand
@@ -185,6 +187,8 @@ if(!((length(unique(data$panel$length.left.umi))==1 & 0 %in% unique(data$panel$l
   cat("Writing SSCS pileup file")
   write.table(pile_sscs,file=paste0(opt$output,"/",opt$sample.name,"_sscs_pileup.txt"),col.names = T,row.names = F,quote = F,sep = '\t')
 }
+
+invisible(file.remove(paste0(header_file_path)))
 
 if(del==1){
  unlink(opt$tmp.output, recursive=T)
